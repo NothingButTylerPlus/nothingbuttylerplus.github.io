@@ -1,1 +1,67 @@
-<p></p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NothingButTyler+</title>
+    <style>
+      * {box-sizing: border-box;
+      }
+body { 
+  margin: 0; 
+  font-family: Arial, Helvetica, sans-serif;
+}
+.header { 
+  overflow: hidden; 
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+}
+.header a { 
+  float: left; 
+  color: black; 
+  text-align: center; 
+  padding: 12px; 
+  text-decoration: none; 
+  font-size: 18px; 
+  line-height: 25px; 
+  border-radius: 4px;
+}
+.header a.logo {
+  font-size: 25px; 
+  font-weight: bold;
+}
+.header a:hover { 
+  background-color: #ddd; 
+  color: black;
+}
+.header a.active { 
+  background-color: dodgerblue; 
+  color: white;
+}
+.header-right { 
+  float: right;
+}
+@media screen and (max-width: 500px) { 
+  .header a {
+    float: none;
+    display: block; 
+    text-align: left;
+  } 
+  .header-right { 
+    float: none; 
+  }}
+    </style>
+  </head>
+  <body>
+<div class="header"> <a href="#default" class="logo">NothingButTyler+</a> <div class="header-right"> <a class="active" href="#home">Home</a> <a href="#contact">Contact</a> <a href="#about" id="AlertButton" target="_blank">About</a> </div></div>
+<!--<div style="padding-left:20px">--><div><center><h1>Log into NothingButTyler+</h1> <i>Don't have an account? Sign up <a href="/signup">here</a>.</i><style>/* This is the number password styling for the code on the login page. (index.html)*/input[type="password"] { width: 100px; padding: 10px;font-size: 16px; border: 1px solid #ccc; border-radius: 4px;}</style><br><br><input type="password" id="number-password" maxlength="4" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 4)" placeholder="Enter your NBT+ code here!" /><p>Or...</p><!--sign in with google-->
+<div id="g_id_onload" data-client_id="531378190318-0blp8d27s3jk91t621gbijg5odlucekb.apps.googleusercontent.com" data-context="signin" data-ux_mode="popup" data-login_uri="https://nothingbuttylerplus.github.io/dashboard.html" data-itp_support="true"> </div>
+<div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="signin_with" data-size="large" data-logo_alignment="left" data-width="40"> </div> 
+  
+  <script> function googleLogin(response) { 
+  console.log(response); 
+  console.log(parseJwt(response.credential)); 
+}
+    function parseJwt(toke) { var base64Url = token.split('.')[1]; var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/'); 
+                             var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) { return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join('')); 
+  </script> 
+<!--end of sign in with google--><i>(Discord Sign in Button Coming Soon!)</i></div></body></html>
