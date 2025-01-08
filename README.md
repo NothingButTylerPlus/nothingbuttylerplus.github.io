@@ -1,8 +1,6 @@
 # NothingButTyler+ 
 ☆ Learn more: https://nothingbuttyler.github.io/plus **(COMING SOON)**
-
 ☆ Go to NothingButTyler Plus: https://nothingbuttylerplus.github.io
-
 ☆ Subscribe to the owner's channel: https://nothingbuttyler.github.io/yt
 
 <br>
