@@ -1,3 +1,4 @@
+// This is the number password script for the 
 const input = document.getElementById('number-password'); 
 // Prevent non-numeric input 
 input.addEventListener('keydown', function(event) { 
