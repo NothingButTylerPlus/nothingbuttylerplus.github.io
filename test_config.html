@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Firebase Config Test</title>
+</head>
+<body>
+    <h1>Checking Firebase Configuration...</h1>
+    <p id="status">Loading...</p>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <script>
+        // 🚨 CRITICALLY: PASTE YOUR KEYS EXACTLY HERE 🚨
+        const firebaseConfig = {
+          apiKey: "AIzaSyDGLQCEOJazPjaXsdQy4DkY3s_MWqu1xWU",
+          authDomain: "nothingbuttylerplus.firebaseapp.com",
+          projectId: "nothingbuttylerplus",
+          storageBucket: "nothingbuttylerplus.firebasestorage.app",
+          messagingSenderId: "701412701240",
+          appId: "1:701412701240:web:d6c04083edb47029dc22cd",
+          measurementId: "G-64475YV46P"
+        };
+        
+        try {
+            // THE LINE THAT FAILS
+            firebase.initializeApp(firebaseConfig);
+            document.getElementById('status').textContent = "SUCCESS! Firebase initialized.";
+            console.log("Firebase initialized successfully.");
+
+        } catch (error) {
+            document.getElementById('status').textContent = "FAILED: See Console for details.";
+            console.error("Initialization Error:", error);
+        }
+    </script>
+</body>
+</html>
