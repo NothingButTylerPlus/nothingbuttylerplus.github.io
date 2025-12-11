@@ -9,7 +9,7 @@
     
     		<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/149272952" />
     
-    <!--Button Style(s)--><link rel="stylesheet" href="//nothingbuttylerplus.glitch.me/css/buttonstyle.css" /><link rel="stylesheet" href="//nothingbuttylerplus.glitch.me/css/submitbutton-style.css" /><link rel="stylesheet" href="//nothingbuttylerplus.glitch.me/css/main/style.css" /><link rel="stylesheet" href="//nothingbuttylerplus.glitch.me/css/textbox.css" />
+    <!--Button Style(s)--><link rel="stylesheet" href="//nothingbuttylerplus.glitch.me/button/style.css" /><link rel="stylesheet" href="//nothingbuttylerplus.glitch.me/btn/submitbutton-style.css" /><link rel="stylesheet" href="//nothingbuttylerplus.glitch.me/style.css" /><link rel="stylesheet" href="//nothingbuttylerplus.glitch.me/textbox.css" />
 
 
   </head>
@@ -77,24 +77,12 @@
         
         <!--GOOGLE FIREBASE ACCESS SCRIPTS-->
         
-        
-        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
 <script>
-    // Firebase CDN links for the services we need
-    // Note: These should be placed *before* this script block, 
-    // but I'm including them here for completeness if they aren't already loaded.
-    /*
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    
-        <script>
-        
-    
-    // YOUR COMPLETE, ACCURATE FIREBASE CONFIGURATION
+    // 🚨 PASTE YOUR ACCURATE CONFIG HERE (Step 1)
     const firebaseConfig = {
       apiKey: "AIzaSyDGLQCEOJazPjaXsdQy4DkY3s_MWqu1xWU",
       authDomain: "nothingbuttylerplus.firebaseapp.com",
@@ -105,15 +93,57 @@
       measurementId: "G-64475YV46P"
     };
     
-    // Initialize Firebase (This must happen first!)
-    firebase.initializeApp(firebaseConfig);
+    // Initialize Firebase and get global references
+    const app = firebase.initializeApp(firebaseConfig);
+    
+    // Use 'var' to make these available to your event listener code
+    var auth = app.auth(); 
+    var db = app.firestore();
+    
+    // ------------------------------------------------------------------
+    // ⚠️ CRITICAL STEP: Copy and paste the ENTIRE contents of your
+    // 'js/signup.js' file into this script block right here, 
+    // after the db/auth definitions.
+    // ------------------------------------------------------------------
 
-    // Get references to the services. Using 'var' makes them globally accessible 
-    // to your separate 'signup.js' file.
-    var auth = firebase.auth();
-    var db = firebase.firestore();
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+
+        const accountName = document.getElementById('accountName').value;
+        const pin = document.getElementById('pin').value;
+        const errorMessage = document.getElementById('error-message');
+        
+        if (pin.length < 6) {
+            errorMessage.textContent = "PIN must be at least 6 characters long.";
+            return;
+        }
+
+        const email = `${accountName.toLowerCase().replace(/\s/g, '')}@nothingbuttylerplus.com`;
+
+        errorMessage.textContent = ''; 
+
+        // 1. Create User (Uses the global 'auth' variable)
+        auth.createUserWithEmailAndPassword(email, pin)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                
+                // 2. Store Account Name (Uses the global 'db' variable)
+                return db.collection("users").doc(user.uid).set({
+                    accountName: accountName,
+                    profilePicURL: "images/default-profile.png" 
+                });
+            })
+            .then(() => {
+                console.log("Sign-up complete. Redirecting...");
+                window.location.href = "dashboard.html";
+            })
+            .catch((error) => {
+                errorMessage.textContent = `Sign-up Failed: ${error.message}`;
+                console.error(error);
+            });
+    });
+
 </script>
-
 
     <script src="/js/signup.js"></script>
         
