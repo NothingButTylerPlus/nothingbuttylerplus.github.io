@@ -1,45 +1,22 @@
-// Function to handle the display and user check
-function loadDashboard() {
-    // 1. Check if a user is logged in
-    auth.onAuthStateChanged((user) => {
+    // In the dashboard.js file:
+
+    auth.onAuthStateChanged(function(user) {
         if (user) {
-            // User is logged in, now fetch their custom data (account name)
-            db.collection("users").doc(user.uid).get()
-                .then((doc) => {
-                    if (doc.exists) {
-                        const userData = doc.data();
-                        
-                        // Update the dashboard elements
-                        document.getElementById("welcome-message").textContent = `Welcome, ${userData.accountName}!`;
-                        document.getElementById("profile-pic").src = userData.profilePicURL;
-                    } else {
-                        // This case should not happen if sign-up worked
-                        document.getElementById("welcome-message").textContent = "Welcome! (Account data missing)";
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching user data:", error);
-                    document.getElementById("welcome-message").textContent = "Error loading account data.";
-                });
+            // ... (user is logged in, data loading logic) ...
         } else {
-            // No user is logged in, redirect them back to the sign-up/login page
-            window.location.href = "index.html";
+            // IF NOT logged in (user is FALSE): 
+            // 1. Redirects them immediately to the login page (index.html).
+            // Change the path to go up one directory (from /user/ to /)
+            window.location.href = "/"; // 🚨 CRITICAL CHANGE 🚨
         }
     });
-}
 
-// Function to handle logging out
-document.getElementById('logout-button').addEventListener('click', () => {
-    auth.signOut()
-        .then(() => {
-            // Redirect to the sign-up page after a successful log out
-            window.location.href = "index.html";
-        })
-        .catch((error) => {
-            console.error("Logout Error:", error);
-            alert("Could not log out. Check the console for details.");
-        });
-});
-
-// Run the function when the page loads
-loadDashboard();
+    // Also update the Sign Out function in the same file:
+    document.getElementById('signOutButton').addEventListener('click', function() {
+        auth.signOut()
+            .then(() => {
+                // Sign-out successful. Redirect to login, which is one level up.
+                window.location.href = "/"; // 🚨 CRITICAL CHANGE 🚨
+            })
+            // ... (catch block) ...
+    });
