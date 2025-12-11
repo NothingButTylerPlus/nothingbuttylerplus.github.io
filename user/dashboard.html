@@ -8,10 +8,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
-    <title>User Dashboard (Test #4)</title> 
+    <title>User Dashboard (Test #1)</title> 
     
     <!--NEW STYLE-->
   <link rel="stylesheet" href="/css/main/style.css" />
+  <link rel="stylesheet" href="/css/main/dashboard.css" />
 
     <!--<link rel="stylesheet" href="/css/dashboard-style-test.css" /> -->
     <link rel="stylesheet" href="/css/fading-popup-style.css" />
@@ -90,27 +91,86 @@
   
   <!--GOOGLE FIREBASE SCRIPT-->
   
-   <script>
-        // 🚨 PASTE YOUR CONFIGURATION HERE 🚨 (Must be the exact same!)
-        const firebaseConfig = {
-          apiKey: "AIzaSyDGLQCEOJazPjaXsdQy4DkY3s_MWqu1xWU",
-          authDomain: "nothingbuttylerplus.firebaseapp.com",
-          projectId: "nothingbuttylerplus",
-          storageBucket: "nothingbuttylerplus.firebasestorage.app",
-          messagingSenderId: "701412701240",
-          appId: "1:701412701240:web:d6c04083edb47029dc22cd",
-          measurementId: "G-64475YV46P"
-        };
-        
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-        // Get references to the services we will use
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-    </script>
+<script>
+    // 🚨 CRITICAL FIX: USING NEW WORKING KEYS (nothingbuttylerplusv2)
+    const firebaseConfig = {
+      apiKey: "AIzaSyCxg9yjBpv0lwhG1dBpqKpUJRrQEXCsavI",
+      authDomain: "nothingbuttylerplusv2.firebaseapp.com",
+      projectId: "nothingbuttylerplusv2",
+      storageBucket: "nothingbuttylerplusv2.firebasestorage.app",
+      messagingSenderId: "478539772644",
+      appId: "1:478539772644:web:aa99972afac494f9bd32f1",
+      measurementId: "G-TBRJNP38KP"
+    };
+    
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    var auth = app.auth(); 
+    var db = app.firestore(); 
 
-    <script src="/js/dashboard.js"></script>
+    // -----------------------------------------------------------
+    // 1. SECURITY & DATA LOADING CHECK
+    // -----------------------------------------------------------
+    auth.onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in. Get their account details.
+            
+            // Show the dashboard content now that we know they are logged in
+            document.getElementById('dashboard').classList.remove('hidden');
+
+            db.collection("users").doc(user.uid).get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        const accountName = doc.data().accountName;
+                        const profilePicURL = doc.data().profilePicURL;
+
+                        // Display welcome message and profile picture
+                        document.getElementById('welcome-message').textContent = `Welcome, ${accountName}!`;
+                        document.getElementById('profile-pic').src = profilePicURL;
+                        
+                        // Hide the "Loading Account..." message that was in the HTML
+                        // document.getElementById('user-info').style.display = 'none';
+
+                    } else {
+                        // This should not happen if signup worked correctly
+                        document.getElementById('welcome-message').textContent = "Welcome, (User Data Missing)";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching user data:", error);
+                });
+
+        } else {
+            // User is NOT signed in. Redirect to the login page immediately.
+            console.log("User is not logged in. Redirecting to index.html");
+            window.location.href = "index.html"; 
+        }
+    });
+
+    // -----------------------------------------------------------
+    // 2. LOGOUT FUNCTIONALITY (Correct Firebase Call)
+    // -----------------------------------------------------------
+    document.getElementById('signOutButton').addEventListener('click', function() {
+        auth.signOut()
+            .then(() => {
+                // Sign-out successful. Redirect to login page.
+                window.location.href = "index.html";
+            })
+            .catch((error) => {
+                console.error("Logout Error:", error);
+                alert("Logout failed. Check console for details.");
+            });
+    });
+
+</script>
+
+<script src="/fp/fading-popup-script.js"></script>
+<script src="/js/dashboard-script-test.js"></script>
+<script src="/js/dashboard.js"></script>
   
 <!--END OF GOOGLE FIREBASE SCRIPT-->
      </body>
