@@ -1,0 +1,338 @@
+<!DOCTYPE html> 
+
+<html lang="en"> 
+
+  <head>
+
+    <meta charset="UTF-8"> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+    <title>Account Settings | NothingButTyler+</title> 
+    
+    <!--NEW STYLE-->
+  <link rel="stylesheet" href="/css/main/style.css" />
+  <link rel="stylesheet" href="/css/main/dashboard.css" />
+
+    <!--<link rel="stylesheet" href="/css/dashboard-style-test.css" /> -->
+    <link rel="stylesheet" href="/css/fading-popup-style.css" />
+
+</head> 
+
+      <body><!-- style="font-family: Arial, Helvetica, sans-serif;background: url('https://w3schools.com/favicon.ico')">-->
+        
+        <div id="popup" class="popup">
+           <img src="https://tr.rbxcdn.com/180DAY-1c3cb7495f65bc2307e643ced5352513/420/420/Decal/Webp/noFilter" alt="X - Close button" title="Close" id="close-btn" height="30" width="30" style="float: right;" />
+           <h1>Login successful</h1>
+           <p>Logged in successfully!</p> 
+        </div>
+        
+        <div style="background-color:red;text-align:center;padding:10px;margin-top:7px;font-size:12px;">This dashboard is still a work-in-progress. If something doesn't work, let NothingButTyler know and he will update it.</div>
+
+
+              <div id="dashboard" class="hidden">
+                
+                
+<div class="header"> 
+
+  <a href="/user/dashboard" class="logo">NothingButTyler+</a>
+
+  <div class="header-right"> 
+
+    <a class="active" href="/user/dashboard">Dashboard</a>
+    
+    <a href="/user/leaks">Leaks</a>
+    
+    <a href="/user/webleaks">Website Leaks</a>
+
+    <a href="/user/upcoming">Upcoming Videos</a> 
+
+    <a href="/user/progress">Progress on Roblox Games</a>
+    
+    <a href="/user/coolclips">Cool Clips</a>
+    
+    <a href="/user/upcomingmovies">Upcoming Roblox Movies</a>
+    
+    <a href="/user/account">Your Account</a>
+    
+  </div>
+ 
+<font color="white"><center>
+    <img id="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6jRFCljQ2Vu0MIfXO9HMopEcUbcOeDRWfCJa7NtESbQ&s=10" style="border-radius: 50px;" alt="Profile Picture" width="50" height="50" />
+    <p id="welcome-message">Loading Account...</p>
+    
+    <h1 id="welcomeMessage">Account Settings</h1>
+
+    <form id="updateNameForm">
+    <h2>Update Account Name</h2>
+    <input type="text" id="newNameInput" placeholder="New Account Name" required>
+    <p id="nameStatus" style="color: yellow;"></p>
+</form>
+
+
+    <hr/>
+
+    <div id="accountManagement">
+        <h2>Account Actions</h2>
+        <button id="forgotPinButton" class="button-29">Send PIN Reset Link</button><br/>
+        
+        <button id="deleteAccountButton" class="button-29" style="background-color: red;">Delete Account</button>
+        <p id="actionStatus" style="color: yellow;"></p>
+    </div>
+  
+  <div id="unsavedChangesBanner" class="hidden-banner">
+    <div style="flex-grow: 1;">
+        You have unsaved changes!
+    </div>
+    <button id="saveChangesButton" class="button-29" style="margin-right: 10px;">Save Changes</button>
+    <button id="discardChangesButton" class="button-29">Discard</button> 
+</div>
+
+  <hr />
+
+    <button class="sign-out-btn" id="signOutButton">Sign Out</button>
+
+  <hr />
+          <footer>        <div style="background-color:transparent;text-align:center;padding:10px;margin-top:7px;font-size:12px;color: white;">Copyright &copy; 2025 by NothingButTyler. All rights reserved.</div>
+      </footer></center></font>
+
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script>
+    // 🚨 CRITICAL FIX: Use the NEW WORKING KEYS
+    const firebaseConfig = {
+      apiKey: "AIzaSyCxg9yjBpv0lwhG1dBpqKpUJRrQEXCsavI",
+      authDomain: "nothingbuttylerplusv2.firebaseapp.com",
+      projectId: "nothingbuttylerplusv2",
+      storageBucket: "nothingbuttylerplusv2.firebasestorage.app",
+      messagingSenderId: "478539772644",
+      appId: "1:478539772644:web:aa99972afac494f9bd32f1",
+      measurementId: "G-TBRJNP38KP"
+    };
+    
+    // Initialize Firebase and get references
+    const app = firebase.initializeApp(firebaseConfig);
+    var auth = app.auth(); 
+    var db = app.firestore();
+    let currentAccountName = ""; // Store the current name globally for reset/comparison
+
+    // -----------------------------------------------------------
+    // GLOBAL BANNER FUNCTIONS & VARIABLES 
+    // -----------------------------------------------------------
+    const banner = document.getElementById('unsavedChangesBanner');
+    const nameInput = document.getElementById('newNameInput');
+    let hasUnsavedChanges = false; 
+
+    function showBanner() {
+        if (!hasUnsavedChanges) {
+            banner.classList.remove('hidden-banner');
+            hasUnsavedChanges = true;
+        }
+    }
+
+    function hideBanner() {
+        if (hasUnsavedChanges) {
+            banner.classList.add('hidden-banner'); 
+            hasUnsavedChanges = false;
+        }
+    }
+    
+    // -----------------------------------------------------------
+    // AUTHENTICATION & INITIAL DATA LOAD
+    // -----------------------------------------------------------
+    auth.onAuthStateChanged(function(user) {
+        if (user) {
+            document.getElementById('dashboard').classList.remove('hidden');
+            
+            db.collection("users").doc(user.uid).get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        currentAccountName = doc.data().accountName; 
+                        const profilePicURL = doc.data().profilePicURL;
+
+                        document.getElementById('welcome-message').textContent = `Settings for ${currentAccountName}`;
+                        document.getElementById('profile-pic').src = profilePicURL;
+                        nameInput.value = currentAccountName; // Set current name as default
+                    }
+                });
+            
+            // Attach listener after initial value is set
+            nameInput.addEventListener('input', showBanner); 
+
+        } else {
+            window.location.href = "../index.html"; 
+        }
+    });
+
+    // -----------------------------------------------------------
+    // 1. MASTER SAVE CHANGES LOGIC
+    // -----------------------------------------------------------
+    document.getElementById('saveChangesButton').addEventListener('click', function() {
+        const newAccountName = nameInput.value.trim();
+        const nameStatus = document.getElementById('nameStatus');
+        const user = auth.currentUser;
+
+        if (!user || !hasUnsavedChanges) {
+             nameStatus.textContent = "No changes to save.";
+             return;
+        }
+
+        if (newAccountName === currentAccountName) {
+            nameStatus.textContent = "Name is the same as current name.";
+            hideBanner();
+            return;
+        }
+
+        // Run the Name Update
+        db.collection("users").doc(user.uid).update({
+            accountName: newAccountName
+        })
+        .then(() => {
+            nameStatus.textContent = `Success! Name changed to ${newAccountName}.`;
+            currentAccountName = newAccountName; // Update global state
+            document.getElementById('welcome-message').textContent = `Settings for ${currentAccountName}`;
+            hideBanner(); // Hide the banner on successful save
+        })
+        .catch((error) => {
+            nameStatus.textContent = `Error changing name: ${error.message}`;
+            console.error("Error updating document: ", error);
+        });
+    });
+
+
+    // -----------------------------------------------------------
+    // 2. DISCARD BUTTON LOGIC 
+    // -----------------------------------------------------------
+    document.getElementById('discardChangesButton').addEventListener('click', function() {
+        // Reset the input field to the original, current name
+        nameInput.value = currentAccountName; 
+        
+        // Clear any file inputs or other forms if they existed
+        // document.getElementById('fileInput').value = ''; 
+
+        // Hide the banner
+        hideBanner();
+        
+        // Clear status messages
+        document.getElementById('nameStatus').textContent = '';
+    });
+
+
+    // -----------------------------------------------------------
+    // 3. FORGOT PIN / PASSWORD RESET LOGIC
+    // -----------------------------------------------------------
+    document.getElementById('forgotPinButton').addEventListener('click', function() {
+        // ... (The rest of the PIN reset logic from the previous script) ...
+        const user = auth.currentUser;
+        const actionStatus = document.getElementById('actionStatus');
+
+        if (!user) {
+            actionStatus.textContent = "Error: Please log in again.";
+            return;
+        }
+
+        const email = user.email;
+
+        auth.sendPasswordResetEmail(email)
+            .then(() => {
+                actionStatus.textContent = "Success! A PIN reset link has been sent to the email associated with your account.";
+            })
+            .catch((error) => {
+                actionStatus.textContent = `Error sending reset email: ${error.message}`;
+                console.error("Error sending reset email: ", error);
+            });
+    });
+
+
+    // -----------------------------------------------------------
+    // 4. DELETE ACCOUNT LOGIC
+    // -----------------------------------------------------------
+    document.getElementById('deleteAccountButton').addEventListener('click', function() {
+        // ... (The rest of the Delete Account logic from the previous script) ...
+        const user = auth.currentUser;
+        const actionStatus = document.getElementById('actionStatus');
+
+        if (!user) {
+            actionStatus.textContent = "Error: Please log in again.";
+            return;
+        }
+
+        if (!confirm("WARNING: Are you sure you want to permanently delete your account? This cannot be undone.")) {
+            return; 
+        }
+
+        db.collection("users").doc(user.uid).delete()
+            .then(() => {
+                return user.delete();
+            })
+            .then(() => {
+                alert("Account deleted successfully. Returning to login page.");
+                window.location.href = "../index.html"; 
+            })
+            .catch((error) => {
+                actionStatus.textContent = `Authentication Error: Please log out, log back in, and try deleting immediately. ${error.message}`;
+                console.error("Error deleting auth user: ", error);
+            });
+    });
+
+    // -----------------------------------------------------------
+    // 5. LOGOUT FUNCTIONALITY
+    // -----------------------------------------------------------
+    document.getElementById('signOutButton').addEventListener('click', function() {
+        auth.signOut()
+            .then(() => {
+                window.location.href = "../index.html";
+            })
+            .catch((error) => {
+                console.error("Logout Error:", error);
+            });
+    });
+
+</script>
+
+  
+  <!-- SAVE & DISCARD CHANGES POPUP -->
+  <!--STYLING-->
+  
+  <style>
+  /* Styling for the Unsaved Changes Banner */
+#unsavedChangesBanner {
+    position: fixed; /* Keep it fixed at the bottom */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #36393f; /* Dark background */
+    color: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    display: flex; /* Use flexbox for alignment */
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000; /* Ensure it stays above other content */
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* The state for when the banner should be hidden */
+.hidden-banner {
+    transform: translateY(100%); /* Slide it completely off the screen */
+}
+
+  </style>
+<!--END OF STYLING-->
+  <!--SCRIPT-->
+  <script>
+  
+  
+  </script>
+  <!--END OF SCRIPT-->
+  <!--END OF SAVE & DISCARD CHANGES POPUP-->
+  
+    <script src="/fp/fading-popup-script.js"></script>
+    <script src="/js/dashboard-script-test.js"></script>
+    <script src="/js/dashboard.js"></script>
+    
+     </body>
+
+</html>
