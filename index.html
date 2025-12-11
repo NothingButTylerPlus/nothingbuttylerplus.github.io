@@ -113,7 +113,7 @@
         auth.signInWithEmailAndPassword(email, pin)
             .then(() => {
                 console.log("Login successful. Redirecting...");
-                window.location.href = "/users/dashboard";
+                window.location.href = "/user/dashboard";
             })
             .catch((error) => {
                 errorMessage.textContent = `Login Failed: ${error.message}`;
