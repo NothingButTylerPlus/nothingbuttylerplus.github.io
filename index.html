@@ -40,126 +40,89 @@
 
 <!--<div style="padding-left:20px">-->
 
-    <div>
+   <div>
 
       <center>
 
         <h1>Log into NothingButTyler+</h1>
 
-        <i>Don't have an account? Sign up <a href="/signup">here</a>.</i>
-
-    
+        <i>Don't have an account? Sign up <a href="/signup.html">here</a>.</i>
 
         <br>
-
         <br>
 
-        <form id="myForm"><input type="password" id="number-password" class="nbttextbox" maxlength="4" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 4)" placeholder="Enter PIN!" /><form id="myForm" onsubmit="redirectToWebsite(event)"><button type="submit" class="button-29">Submit</button></form></form>
+        <form id="loginForm"> 
+            
+            <label for="accountName">Account Name:</label>
+            <input type="text" id="accountName" class="nbttextbox" required>
+            <br />
+            
+            <label for="pin">6-digit PIN:</label>
+            <input type="password" id="pin" class="nbttextbox" minlength="6" maxlength="6" required>
+            <br />
+            
+            <button type="submit" class="button-29">Log In</button>
+            <p id="error-message" style="color: red;"></p>
+        </form>
 
         <p>Or...</p>
-
-        <!--sign in with google--><!--popup sign in-->
-
- <!-- UNAVAILABLE DUE TO ERROR ON GLITCH.COM AND GITHUB.COM -->
- <!--<div id="g_id_onload" style="display: inline-block; margin-right: 10px;"
-
-     data-client_id="531378190318-0blp8d27s3jk91t621gbijg5odlucekb.apps.googleusercontent.com"
-
-     data-context="sign"
-
-     data-ux_mode="popup"
-
-     data-login_uri="https://nothingbuttylerplus.glitch.me/user/dashboard.html"
-
-     data-itp_support="true">
-
-</div>
-
-<--end of popup sign in--><!--button sign in->
-
-<div class="g_id_signin" style="padding: 10px; background-color: transparent; width: 200px; text-align: center; cursor: pointer;"
-
-     data-type="standard"
-
-     data-shape="square"
-
-     data-theme="outline"
-
-     data-text="signin_with"
-
-     data-size="medium">
-
-</div>
-
-We're sorry about this. -->
-
         
-<!--end of button sign in--><!--end of sign in with google--><!--end of <!-- 👇 scripts -->
-
-    <script src="https://accounts.google.com/gsi/client"></script>
-
-    <script src="/googlelogin.js"></script>
-
-<!--end of 👆 scripts-->
-
-        
-
-<!--end of sign in with google-->
-
-        <!--<i>(Discord Sign in Button Coming Soon!)</i> Jan 16 2025, the Discord button was created-->
-<a href="https://discord.com/oauth2/authorize?client_id=1323326058329804830&response_type=code&redirect_uri=https%3A%2F%2Fnothingbuttylerplus.glitch.me%2Fuser%2Fdashboard.html&scope=identify"><button class="button-29" style="display: inline-block; margin-right: 10px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-discord" viewBox="0 0 16 16"> <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/> </svg> Sign in with Discord</button></a>
-
-<!--<a href="https://authlog.glitch.me/oauth2/authorize?client_id=1323326058329804830&response_type=code&redirect_uri=https%3A%2F%2Fnothingbuttylerplus.glitch.me%2Fuser%2Fdashboard.html&scope=identify"><button class="button-29" style="display: inline-block; margin-right: 10px;"> Sign in with Authlog</button></a>-->
-    </div>
+        </div>
     
-    
-    <center><br />
-    
-    <i>(Note: The Google sign in button hasn't been working, so Google sign in is unavailable. <!--!--> More sign in options are coming soon<!--end of !-->.)</i>
-    
-    <hr />
-    
-    <h3>Learn More About NothingButTyler+</h3>
-    <p>NothingButTyler+ is a website subscripton by NothingButTyler where you can get access to upcoming videos/shorts/livestreams, progress on Roblox games, cool clips by NothingButTyler, progress on Roblox movies, and so much more! It's completely free, and no <u>paying</u> subscriptions are required at all. Enjoy NothingButTyler+ and have fun!</p>
- 
-
-<a href="#"><button class="button-29">Log in</button></a>
-<a href="/signup"><button class="button-29">Sign up</button></a>
-    
-<hr />
-          <footer>        <div style="background-color:transparent;text-align:center;padding:10px;margin-top:7px;font-size:12px;color: white;">Copyright &copy; 2025 by NothingButTyler. All rights reserved.</div>
-      </footer></center></font>
-  </body><script src="/btn/submitbutton-script.js"></script>
+    </center></font>
+  </body>
+  
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
 <script>
-    // CHECK 1: Ensure this block is exactly correct and pasted in index.html and dashboard.html
+    // 🚨 CRITICAL FIX: NEW WORKING KEYS (nothingbuttylerplusv2)
     const firebaseConfig = {
-      apiKey: "AIzaSyDGLQCEOJazPjaXsdQy4DkY3s_MWqu1xWU", // <-- CHECK THIS KEY CAREFULLY
-      authDomain: "nothingbuttylerplus.firebaseapp.com",
-      projectId: "nothingbuttylerplus",
-      storageBucket: "nothingbuttylerplus.firebasestorage.app",
-      messagingSenderId: "701412701240",
-      appId: "1:701412701240:web:d6c04083edb47029dc22cd",
-      measurementId: "G-64475YV46P" // This is optional, but keep it for consistency
+      apiKey: "AIzaSyCxg9yjBpv0lwhG1dBpqKpUJRrQEXCsavI",
+      authDomain: "nothingbuttylerplusv2.firebaseapp.com",
+      projectId: "nothingbuttylerplusv2",
+      storageBucket: "nothingbuttylerplusv2.firebasestorage.app",
+      messagingSenderId: "478539772644",
+      appId: "1:478539772644:web:aa99972afac494f9bd32f1",
+      measurementId: "G-TBRJNP38KP"
     };
     
-    // CHECK 2: Ensure you are initializing it immediately after
-    firebase.initializeApp(firebaseConfig); 
+    const app = firebase.initializeApp(firebaseConfig);
+    var auth = app.auth(); 
+    
+    // Attach login listener to the 'loginForm' ID
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault(); 
 
-    // CHECK 3: Ensure you are referencing the services correctly (in signup.js)
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+        const accountName = document.getElementById('accountName').value;
+        const pin = document.getElementById('pin').value; // Changed ID from 'number-password' to 'pin'
+        const errorMessage = document.getElementById('error-message');
+        
+        if (pin.length < 6) {
+            errorMessage.textContent = "PIN must be 6 characters long.";
+            return;
+        }
+
+        // Recreate the special email used for Authentication
+        const email = `${accountName.toLowerCase().replace(/\s/g, '')}@nothingbuttylerplus.com`;
+
+        errorMessage.textContent = ''; 
+
+        // 1. Sign In User
+        auth.signInWithEmailAndPassword(email, pin)
+            .then(() => {
+                console.log("Login successful. Redirecting...");
+                window.location.href = "/users/dashboard";
+            })
+            .catch((error) => {
+                errorMessage.textContent = `Login Failed: ${error.message}`;
+                console.error("Login Error:", error);
+            });
+    });
+
 </script>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    
-    <script>
-        // const firebaseConfig = { ... }
-        // firebase.initializeApp(firebaseConfig);
-    </script>
-
-
+<script src="/btn/submitbutton-script.js"></script>
 
 </html>
