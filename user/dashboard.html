@@ -1,19 +1,118 @@
 <!DOCTYPE html> 
+
 <html lang="en"> 
+
   <head>
+
     <meta charset="UTF-8"> 
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
     <title>User Dashboard (Test #1)</title> 
-    <link rel="stylesheet" href="/css/dashboard-style-test.css"> 
+    
+    <!--NEW STYLE-->
+  <link rel="stylesheet" href="/css/main/style.css" />
+
+    <!--<link rel="stylesheet" href="/css/dashboard-style-test.css" /> 
+    <link rel="stylesheet" href="/fp/fading-popup-style.css" />-->
+
 </head> 
-      <body>
+
+      <body><!-- style="font-family: Arial, Helvetica, sans-serif;background: url('https://w3schools.com/favicon.ico')">-->
+        
+        <div id="popup" class="popup">
+           <img src="https://tr.rbxcdn.com/180DAY-1c3cb7495f65bc2307e643ced5352513/420/420/Decal/Webp/noFilter" alt="X - Close button" title="Close" id="close-btn" height="30" width="30" style="float: right;" />
+           <h1>Login successful</h1>
+           <p>Logged in successfully!</p> 
+        </div>
+        
+        <div style="background-color:red;text-align:center;padding:10px;margin-top:7px;font-size:12px;">This dashboard is still a work-in-progress. If something doesn't work, let NothingButTyler know and he will update it.</div>
+
+
               <div id="dashboard" class="hidden">
+                
+                
+<div class="header"> 
+
+  <a href="/user/dashboard" class="logo">NothingButTyler+</a>
+
+  <div class="header-right"> 
+
+    <a class="active" href="/user/dashboard">Dashboard</a>
+    
+    <a href="/user/leaks">Leaks</a>
+    
+    <a href="/user/webleaks">Website Leaks</a>
+
+    <a href="/user/upcoming">Upcoming Videos</a> 
+
+    <a href="/user/progress">Progress on Roblox Games</a>
+    
+    <a href="/user/coolclips">Cool Clips</a>
+    
+    <a href="/user/upcomingmovies">Upcoming Roblox Movies</a>
+    
+  </div>
+  <font color="white"><center>
+        <img id="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6jRFCljQ2Vu0MIfXO9HMopEcUbcOeDRWfCJa7NtESbQ&s=10" style="border-radius: 50px;" alt="Profile Picture" width="50" height="50" />
+    <p id="welcome-message">Loading Account...</p>
+    
                  <h1>Welcome to Your Dashboard</h1>
+
                  <div id="user-info"></div> 
-                 <button id="sign-out">Sign Out</button>
+                <button class="sign-out-btn" id="signOutButton">Sign Out</button>
+
+    <script>
+        document.getElementById('signOutButton').addEventListener('click', function() {
+            // Simulate sign-out process (like clearing session data, etc.)
+            alert('You have been signed out. Now taking you back to the homepage.');
+            // Optionally, redirect to login page or home
+            window.location.href = "/";
+        });
+    </script>
+
+
               </div> 
+
+                <!--<div style="background-color:#f1f1f1;text-align:center;padding:10px;margin-top:7px;font-size:12px;">Copyright &copy; 2025 by NothingButTyler. All rights reserved.</div>-->
+                
+                   <footer>    <hr />    <div style="background-color:transparent;text-align:center;padding:10px;margin-top:7px;font-size:12px;color: white;">Copyright &copy; 2025 by NothingButTyler. All rights reserved.</div>
+      </footer></center>
+
                <script src="https://apis.google.com/js/platform.js" async defer></script> 
+
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+
          <script src="/js/dashboard-script-test.js"></script>
+        
+        <script src="/fp/fading-popup-script.js"></script>
+
+  
+  <!--GOOGLE FIREBASE SCRIPT-->
+  
+   <script>
+        // 🚨 PASTE YOUR CONFIGURATION HERE 🚨 (Must be the exact same!)
+        const firebaseConfig = {
+          apiKey: "AIzaSyDGLQCEOJazPjaXsdQy4DkY3s_MWqu1xWU",
+          authDomain: "nothingbuttylerplus.firebaseapp.com",
+          projectId: "nothingbuttylerplus",
+          storageBucket: "nothingbuttylerplus.firebasestorage.app",
+          messagingSenderId: "701412701240",
+          appId: "1:701412701240:web:d6c04083edb47029dc22cd",
+          measurementId: "G-64475YV46P"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Get references to the services we will use
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+    </script>
+
+    <script src="/js/dashboard.js"></script>
+  
+<!--END OF GOOGLE FIREBASE SCRIPT-->
      </body>
+
 </html>
