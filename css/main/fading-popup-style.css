@@ -1,0 +1,19 @@
+body { 
+  font-family: Arial, sans-serif; 
+}
+.popup { 
+  position: fixed;
+  top: 80%; 
+  left: 90%; 
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: blue;/*#f9c2c2;*/
+  border: 1px solid #f00; 
+  border-radius: 5px;
+  opacity: 1;
+  transition: opacity 1s ease;
+  z-index: 1000; 
+} 
+.popup.hidden { 
+  opacity: 0;
+}
