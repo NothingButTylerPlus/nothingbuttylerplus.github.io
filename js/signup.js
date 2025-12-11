@@ -24,7 +24,7 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
         .then(() => {
             console.log("Sign-up complete. Redirecting...");
             // Redirect the user to their dashboard
-            window.location.href = "dashboard.html";
+            window.location.href = "/user/dashboard";
         })
         .catch((error) => {
             // Display any errors (e.g., pin is too weak, account name already used)
