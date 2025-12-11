@@ -82,25 +82,38 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     
-    <script>
-        // 🚨 PASTE YOUR CONFIGURATION HERE 🚨
-        const firebaseConfig = {
-          apiKey: "AIzaSyDGLQCEOJazPjaXsdQy4DkY3s_MWqu1xWU",
-          authDomain: "nothingbuttylerplus.firebaseapp.com",
-          projectId: "nothingbuttylerplus",
-          storageBucket: "nothingbuttylerplus.firebasestorage.app",
-          messagingSenderId: "701412701240",
-          appId: "1:701412701240:web:d6c04083edb47029dc22cd",
-          measurementId: "G-64475YV46P"
-        };
+<script>
+    // Firebase CDN links for the services we need
+    // Note: These should be placed *before* this script block, 
+    // but I'm including them here for completeness if they aren't already loaded.
+    /*
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+        <script>
         
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+    
+    // YOUR COMPLETE, ACCURATE FIREBASE CONFIGURATION
+    const firebaseConfig = {
+      apiKey: "AIzaSyDGLQCEOJazPjaXsdQy4DkY3s_MWqu1xWU",
+      authDomain: "nothingbuttylerplus.firebaseapp.com",
+      projectId: "nothingbuttylerplus",
+      storageBucket: "nothingbuttylerplus.firebasestorage.app",
+      messagingSenderId: "701412701240",
+      appId: "1:701412701240:web:d6c04083edb47029dc22cd",
+      measurementId: "G-64475YV46P"
+    };
+    
+    // Initialize Firebase (This must happen first!)
+    firebase.initializeApp(firebaseConfig);
 
-        // Get references to the services we will use
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-    </script>
+    // Get references to the services. Using 'var' makes them globally accessible 
+    // to your separate 'signup.js' file.
+    var auth = firebase.auth();
+    var db = firebase.firestore();
+</script>
+
 
     <script src="/js/signup.js"></script>
         
