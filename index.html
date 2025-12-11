@@ -131,4 +131,25 @@ We're sorry about this. -->
       </footer></center></font>
   </body><script src="/btn/submitbutton-script.js"></script>
 
+<script>
+    // CHECK 1: Ensure this block is exactly correct and pasted in index.html and dashboard.html
+    const firebaseConfig = {
+      apiKey: "AIzaSyDGLQCEOJazPjaXsdQy4DkY3s_MWqu1xWU", // <-- CHECK THIS KEY CAREFULLY
+      authDomain: "nothingbuttylerplus.firebaseapp.com",
+      projectId: "nothingbuttylerplus",
+      storageBucket: "nothingbuttylerplus.firebasestorage.app",
+      messagingSenderId: "701412701240",
+      appId: "1:701412701240:web:d6c04083edb47029dc22cd",
+      measurementId: "G-64475YV46P" // This is optional, but keep it for consistency
+    };
+    
+    // CHECK 2: Ensure you are initializing it immediately after
+    firebase.initializeApp(firebaseConfig); 
+
+    // CHECK 3: Ensure you are referencing the services correctly (in signup.js)
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+</script>
+
+
 </html>
