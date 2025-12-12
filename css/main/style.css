@@ -130,61 +130,48 @@ a {
   
 
   
-  /* TEXT INPUT STYLING */
-  
-           input {
-                    box-shadow: inset #abacaf 0 0 0 2px;
-                    border: 0;
-                    background: rgba(0, 0, 0, 0);
-                    appearance: none;
-                    width: 100%;
-                    position: relative;
-                    border-radius: 3px;
-                    padding: 9px 12px;
-                    line-height: 1.4;
-                    color: rgb(0, 0, 0);
-                    font-size: 16px;
-                    font-weight: 400;
-                    height: 40px;
-                    transition: all .2s ease;
-                    :hover{
-                        box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
-                    }
-                    :focus{
-                        background: #fff;
-                        outline: 0;
-                        box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
-                    }
-                
-  
-  /* END OF TEXT INPUT STYLING */
-  
-  
-  
-  /* DISCARD CHANGES TEST */
-#discardChangesButton {
-    /* Assuming you want it to look like a standard, un-highlighted button */
-    background-color: transparent !important; 
-    color: white !important; 
-    border: 1px solid white !important;
-}
+ /* ... Around Line 90 in your style.css ... */
 
-/* If you are using a standard blue/colored button-29 */
-/* You may just need to override whatever is blocking it */
-#discardChangesButton {
-    /* For testing: Just make it look like the Save button */
-    background-color: #5865f2 !important; 
-    color: white !important;
-}
+  /* TEXT INPUT STYLING (The original 'input' selector) */
+  input {
+      box-shadow: inset #abacaf 0 0 0 2px;
+      border: 0;
+      background: rgba(0, 0, 0, 0);
+      appearance: none;
+      width: 100%;
+      position: relative;
+      border-radius: 3px;
+      padding: 9px 12px;
+      line-height: 1.4;
+      color: rgb(0, 0, 0); /* This should be white for your background */
+      font-size: 16px;
+      font-weight: 400;
+      height: 40px;
+      transition: all .2s ease;
+  }
+  input:hover{
+      box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
+  }
+  input:focus{
+      background: #fff;
+      outline: 0;
+      box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
+  }
+  
+/* DISCARD CHANGES TEST (Delete this entire block) */
+/* #discardChangesButton { ... } */
+/* #discardChangesButton { ... } */
              
+             
+/* BUTTON 29 (Ensure this is correctly placed outside previous blocks) */
+.button-29 {
+   /* ---------------------------------------------------- */
+/* NEW LOCATION FOR button-29 CODE (Must be outside { }) */
+/* ---------------------------------------------------- */             
              
              
 /* BUTTON  29 */
-             
-  /*<!-- HTML !-->
-<button class="button-29" role="button">Button 29</button>
-*/
-             
+
 .button-29 {
   align-items: center;
   appearance: none;
@@ -231,27 +218,26 @@ a {
 }
              
              
-             
-/* TEXT INPUT */
-              .nbttextbox  {
-                border: 3px solid #000;
-                border-radius: 5px;
-                height: 50px;
-                line-height: normal;
-                color: #282828;
-                display: block;
-                width: 100%;
-                box-sizing: border-box;
-                user-select: auto;
-                font-size: 16px;
-                padding: 0 6px;
-                padding-left: 12px;
-                :focus{
-                    border: 3px solid #5551ff;
-                }
-             
-             
-             
+/* TEXT INPUT (The .nbttextbox selector) */
+.nbttextbox  {
+    border: 3px solid #000;
+    border-radius: 5px;
+    height: 50px;
+    line-height: normal;
+    color: #282828;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    user-select: auto;
+    font-size: 16px;
+    padding: 0 6px;
+    padding-left: 12px;
+}
+.nbttextbox:focus{
+    border: 3px solid #5551ff;
+}
+
+  /* END OF TEXT INPUT STYLING */
              
                              
   /* END OF STYLE.CSS */
