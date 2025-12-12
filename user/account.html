@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
     <title>Your Account | NothingButTyler+</title> 
-
-<!--FONT AWESOME SCRIPT-->
+    
+    <!--FONT AWESOME SCRIPT-->
 
 <script src="https://kit.fontawesome.com/eeb01edac2.js" crossorigin="anonymous"></script>
 
@@ -46,6 +46,7 @@
              <div class="header-right"> 
                 <a href="/user/dashboard">Dashboard</a>
                 <a class="active" href="/user/account">Your Account</a>
+               <a href="/user/settings">Settings</a>
                 <a href="/user/pricing">Pricing</a>
                 <a href="/user/help">Help/FAQ</a>
                <a hrer="/user/privacy">Privacy Policy</a>
@@ -54,27 +55,66 @@
 
     
   </div>
-  <font color="white"><center>
-        <img id="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6jRFCljQ2Vu0MIfXO9HMopEcUbcOeDRWfCJa7NtESbQ&s=10" style="border-radius: 50px;" alt="Profile Picture" width="50" height="50" />
-    <p id="welcome-message">Loading Account...</p>
-    
-                 <h1>Welcome to Your Account!</h1>
-    <p>What can we help you with today?</p>
-    
-    <hr />
-    
-    <h2>Switching to a new subscription?</h2>
-    <p>Click the button below to review what you can get from free, pro, and premium!</p>
-    <a href="/user/pricing"><button class="button-29" role="button">See Pricing</button></a>
+          <font color="white"><center>
+            
+            <img id="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6jRFCljQ2Vu0MIfXO9HMopEcUbcOeDRWfCJa7NtESbQ&s=10" style="border-radius: 50px; margin-top: 20px;" alt="Profile Picture" width="100" height="100" />
+            
+            <h1>Account!</h1>
+            <p>What can we help you with today? (Settings for <span id="displayName">Loading...</span>)</p>
+            
+            <hr/>
 
-    <hr />
-    
-    <h2>Confused, stuck, or reporting a bug?</h2>
-    <p>NothingButTyler is here for you anytime you need it! Join his Discord server below to create a support ticket!</p>
-    <a href="https://discord.gg/s2KB2FSFpZ" target="_blank"><button class="button-29" role="button">Join the Discord server!</button></a>
-    
-    <hr />
-                <button class="sign-out-btn" id="signOutButton">Sign Out</button>
+            <div id="account-info" style="text-align: left; max-width: 400px; margin: 0 auto; padding-bottom: 20px;">
+                <h2>Your Details</h2>
+                <p><strong>Login Email:</strong> <span id="authEmail">Loading...</span></p>
+                <p><strong>Account ID (UID):</strong> <span id="authUid">Loading...</span></p>
+                <p><strong>Member Since:</strong> <span id="creationTime">Loading...</span></p>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <button id="goToSettingsButton" class="button-29">
+                        <i class="fa-solid fa-gear"></i> Manage Account Settings
+                    </button>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div style="max-width: 500px; margin: 0 auto; padding: 20px 0;">
+                <h2>Switching to a new subscription?</h2>
+                <p>Click the button below to review what you can get from free, pro, and premium!</p>
+                <button id="seePricingButton" class="button-29"><i class="fa-solid fa-dollar-sign"></i> See Pricing</button>
+            </div>
+            
+            <hr/>
+
+            <div style="max-width: 500px; margin: 0 auto; padding: 20px 0;">
+                <h2>Confused, stuck, or reporting a bug?</h2>
+                <p>NothingButTyler is here for you. Join his Discord server below to open a support ticket.</p>
+                <button id="joinDiscordButton" class="button-29"><i class="fa-brands fa-discord"></i> Join the Discord Server</button>
+            </div>
+
+            <hr/>
+
+            <div id="accountManagement" style="max-width: 500px; margin: 0 auto; padding: 20px 0;">
+                <h2>Account Recovery</h2>
+                <button id="forgotPinButton" class="button-29" style="margin-right: 10px;">
+                  <i class="fas fa-key"></i> Send PIN Reset Link
+                </button>
+                <p id="actionStatus" style="color: yellow; margin-top: 10px;"></p>
+            </div>
+            
+            <hr />
+
+            <button id="backToDashboardButton" class="button-29" style="margin-right: 10px; margin-bottom: 20px;">
+                <i class="fa-solid fa-backward"></i> Back to Dashboard
+            </button>
+            
+            <button class="sign-out-btn" id="signOutButton">Sign Out</button>
+
+            <footer>
+                <div style="background-color:transparent;text-align:center;padding:10px;margin-top:7px;font-size:12px;color: white;">Copyright &copy; 2025 by NothingButTyler. All rights reserved.</div>
+            </footer>
+        </center></font>
 
     <script>
         document.getElementById('signOutButton').addEventListener('click', function() {
