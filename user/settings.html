@@ -166,24 +166,61 @@
         }
     });
 
-    // -----------------------------------------------------------
-    // 1. MASTER SAVE CHANGES LOGIC
-    // -----------------------------------------------------------
-    document.getElementById('saveChangesButton').addEventListener('click', function() {
-        const newAccountName = nameInput.value.trim();
-        const nameStatus = document.getElementById('nameStatus');
-        const user = auth.currentUser;
+/// -----------------------------------------------------------
+// 1. MASTER SAVE CHANGES LOGIC (FIXED TO UPDATE AUTH EMAIL)
+// -----------------------------------------------------------
+document.getElementById('saveChangesButton').addEventListener('click', function() {
+    const newAccountName = nameInput.value.trim();
+    const nameStatus = document.getElementById('nameStatus');
+    const user = auth.currentUser;
 
-        if (!user || !hasUnsavedChanges) {
-             nameStatus.textContent = "No changes to save.";
-             return;
-        }
+    // Check for obvious reasons not to save
+    if (!user || !hasUnsavedChanges || newAccountName === currentAccountName) {
+         nameStatus.textContent = "No changes to save.";
+         return;
+    }
 
-        if (newAccountName === currentAccountName) {
-            nameStatus.textContent = "Name is the same as current name.";
-            hideBanner();
-            return;
-        }
+    // Check if the input is empty
+    if (newAccountName === "") {
+        nameStatus.textContent = "Account name cannot be empty.";
+        return;
+    }
+
+    // 1. Calculate the new hidden email address for the Auth service
+    // This is the CRITICAL step to change the user's login credential.
+    const newEmail = `${newAccountName.toLowerCase().replace(/\s/g, '')}@nothingbuttylerplus.com`;
+    
+    nameStatus.textContent = "Saving changes...";
+    
+    // A. Update the Authentication Email (The login credential)
+    user.updateEmail(newEmail)
+        .then(() => {
+            console.log("Authentication Email updated successfully.");
+            
+            // B. Update Firestore (The visible name)
+            return db.collection("users").doc(user.uid).update({
+                accountName: newAccountName
+            });
+        })
+        .then(() => {
+            // Success! Update local state and hide banner
+            nameStatus.textContent = `Success! Account Name changed to ${newAccountName}.`;
+            currentAccountName = newAccountName; 
+            document.getElementById('welcome-message').textContent = `Settings for ${currentAccountName}`;
+            hideBanner(); 
+        })
+        .catch((error) => {
+            // Handle common security error (user must re-login)
+            if (error.code === 'auth/requires-recent-login') {
+                 nameStatus.textContent = "Security Error: Please log out and log back in immediately before attempting to change your account name.";
+            } else {
+                 nameStatus.textContent = `Error: ${error.message}`;
+            }
+            console.error("Error updating account:", error);
+        });
+});
+
+
 
         // Run the Name Update
         db.collection("users").doc(user.uid).update({
@@ -199,7 +236,6 @@
             nameStatus.textContent = `Error changing name: ${error.message}`;
             console.error("Error updating document: ", error);
         });
-    });
 
 
     // -----------------------------------------------------------
