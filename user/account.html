@@ -164,16 +164,33 @@
     const app = firebase.initializeApp(firebaseConfig);
     var auth = app.auth(); 
     var db = app.firestore(); 
+    
+    // Helper function to format creation date for readability
+    function formatCreationTime(timestamp) {
+        const ms = parseInt(timestamp); 
+        const date = new Date(ms);
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        return date.toLocaleDateString(undefined, options);
+    }
 
     // -----------------------------------------------------------
-    // 1. SECURITY & DATA LOADING CHECK
+    // 1. SECURITY & DATA LOADING CHECK (THE FIX IS HERE)
     // -----------------------------------------------------------
     auth.onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in. Get their account details.
             
-            // Show the dashboard content now that we know they are logged in
+            // Show the dashboard content
             document.getElementById('dashboard').classList.remove('hidden');
+
+            // --- START: DISPLAY AUTH DATA (FIX) ---
+            document.getElementById('authEmail').textContent = user.email;
+            document.getElementById('authUid').textContent = user.uid;
+            
+            const creationMs = user.metadata.creationTime;
+            document.getElementById('creationTime').textContent = formatCreationTime(creationMs);
+            // --- END: DISPLAY AUTH DATA (FIX) ---
+
 
             db.collection("users").doc(user.uid).get()
                 .then((doc) => {
@@ -181,21 +198,61 @@
                         const accountName = doc.data().accountName;
                         const profilePicURL = doc.data().profilePicURL;
 
-                        // Display welcome message and profile picture
-                        document.getElementById('welcome-message').textContent = `Welcome, ${accountName}!`;
+                        // Display name in the welcome message/header
+                        document.getElementById('displayName').textContent = accountName; 
                         document.getElementById('profile-pic').src = profilePicURL;
                         
-                        // Hide the "Loading Account..." message that was in the HTML
-                        // document.getElementById('user-info').style.display = 'none';
-
                     } else {
-                        // This should not happen if signup worked correctly
-                        document.getElementById('welcome-message').textContent = "Welcome, (User Data Missing)";
+                        // User Data Missing
+                        document.getElementById('displayName').textContent = "(User Data Missing)";
                     }
                 })
                 .catch((error) => {
                     console.error("Error fetching user data:", error);
                 });
+
+
+            // -----------------------------------------------------------
+            // 3. NAVIGATION & ACTION LISTENERS (Re-attaching your working logic)
+            // -----------------------------------------------------------
+            
+            // Go To Settings Button
+            document.getElementById('goToSettingsButton').addEventListener('click', function() {
+                window.location.href = "settings.html";
+            });
+            
+            // Send PIN Reset Link Button
+            document.getElementById('forgotPinButton').addEventListener('click', function() {
+                const actionStatus = document.getElementById('actionStatus');
+                if (!user) { actionStatus.textContent = "Error: Please log in again."; return; }
+                actionStatus.textContent = "Sending PIN reset link...";
+                
+                auth.sendPasswordResetEmail(user.email)
+                    .then(() => {
+                        actionStatus.textContent = "Success! A PIN reset link has been sent to the email associated with your account.";
+                    })
+                    .catch((error) => {
+                        actionStatus.textContent = `Error sending reset email: ${error.message}`;
+                        console.error("Error sending PIN reset:", error);
+                    });
+            });
+
+            // Back to Dashboard Button
+            document.getElementById('backToDashboardButton').addEventListener('click', function() {
+                window.location.href = "dashboard.html";
+            });
+
+            // See Pricing Button
+            document.getElementById('seePricingButton').addEventListener('click', function() {
+                window.location.href = "../pricing.html"; 
+            });
+
+            // Join Discord Button (Placeholder URL)
+            document.getElementById('joinDiscordButton').addEventListener('click', function() {
+                // You will need to replace this placeholder URL with your actual Discord invite link
+                window.open("YOUR_DISCORD_INVITE_LINK_HERE", "_blank"); 
+            });
+
 
         } else {
             // User is NOT signed in. Redirect to the login page immediately.
@@ -204,22 +261,10 @@
         }
     });
 
-    // -----------------------------------------------------------
-    // 2. LOGOUT FUNCTIONALITY (Correct Firebase Call)
-    // -----------------------------------------------------------
-    document.getElementById('signOutButton').addEventListener('click', function() {
-        auth.signOut()
-            .then(() => {
-                // Sign-out successful. Redirect to login page.
-                window.location.href = "/";
-            })
-            .catch((error) => {
-                console.error("Logout Error:", error);
-                alert("Logout failed. Check console for details.");
-            });
-    });
+    // NOTE: We removed the duplicate signOutButton listener and put the working one inside the auth.onAuthStateChanged block for better cleanup/logic flow.
 
 </script>
+
 
 <script src="/fp/fading-popup-script.js"></script>
 <script src="/js/dashboard-script-test.js"></script>
