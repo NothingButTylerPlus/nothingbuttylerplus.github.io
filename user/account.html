@@ -167,11 +167,27 @@
     
     // Helper function to format creation date for readability
     function formatCreationTime(timestamp) {
-        const ms = parseInt(timestamp); 
-        const date = new Date(ms);
-        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        // user.metadata.creationTime is often a standard UTC date string.
+        // We pass the string directly to the Date constructor for reliable parsing.
+        const date = new Date(timestamp); 
+        
+        // Always check if the date object is valid before formatting
+        if (isNaN(date)) {
+            return "Error: Could not parse date.";
+        }
+        
+        // Use consistent formatting
+        const options = { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric', 
+            hour: '2-digit', 
+            minute: '2-digit',
+            second: '2-digit' // Added seconds for precision
+        };
         return date.toLocaleDateString(undefined, options);
     }
+
 
     // -----------------------------------------------------------
     // 1. SECURITY & DATA LOADING CHECK (THE FIX IS HERE)
