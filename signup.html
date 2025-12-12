@@ -1,585 +1,230 @@
-<!DOCTYPE html> 
-
-<html lang="en"> 
+<!DOCTYPE html>
+<html>
 
   <head>
 
-    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-
-    <title>Account Settings | NothingButTyler+</title> 
+    <title>Sign Up | NothingButTyler+</title>
     
-    <!--NEW STYLE-->
-  <link rel="stylesheet" href="/css/main/style.css" />
-  <link rel="stylesheet" href="/css/main/dashboard.css" />
-
-    <!--<link rel="stylesheet" href="/css/dashboard-style-test.css" /> -->
-    <link rel="stylesheet" href="/css/fading-popup-style.css" />
-
-</head> 
-
-      <body><!-- style="font-family: Arial, Helvetica, sans-serif;background: url('https://w3schools.com/favicon.ico')">-->
-        
-        <div id="popup" class="popup">
-           <img src="https://tr.rbxcdn.com/180DAY-1c3cb7495f65bc2307e643ced5352513/420/420/Decal/Webp/noFilter" alt="X - Close button" title="Close" id="close-btn" height="30" width="30" style="float: right;" />
-           <h1>Login successful</h1>
-           <p>Logged in successfully!</p> 
-        </div>
-        
-        <div style="background-color:red;text-align:center;padding:10px;margin-top:7px;font-size:12px;">This dashboard is still a work-in-progress. If something doesn't work, let NothingButTyler know and he will update it.</div>
+    		<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/149272952" />
+    
+    <!--Button Style(s)--><link rel="stylesheet" href="//nothingbuttylerplus.glitch.me/css/button-style.css" /><link rel="stylesheet" href="//nothingbuttylerplus.glitch.me/css/submitbutton-style.css" /><link rel="stylesheet" href="//nothingbuttylerplus.glitch.me/css/main/style.css" /><link rel="stylesheet" href="//nothingbuttylerplus.glitch.me/css/textbox.css" />
 
 
-              <div id="dashboard" class="hidden">
-                
-                
+  </head>
+
+  <body><font color="white">
+        <a href="/contact.html" style="text-decoration: none;">    <div style="background-color:red;text-align:center;padding:10px;margin-top:7px;font-size:12px;color: black;">Some things are still a work-in-progress. If something doesn't work, let NothingButTyler know and he will update it.</div></a>
+
 <div class="header"> 
 
-  <a href="/user/dashboard" class="logo">NothingButTyler+</a>
+  <a href="/" class="logo">NothingButTyler+</a>
 
   <div class="header-right"> 
 
-    <a class="active" href="/user/dashboard">Dashboard</a>
+    <a href="/">Home</a>
     
-    <a href="/user/leaks">Leaks</a>
-    
-    <a href="/user/webleaks">Website Leaks</a>
+    <a class="active" href="/signup">Sign Up</a>
 
-    <a href="/user/upcoming">Upcoming Videos</a> 
+    <a href="/contact.html">Contact</a> 
 
-    <a href="/user/progress">Progress on Roblox Games</a>
+    <a href="/about.html">About</a>
     
-    <a href="/user/coolclips">Cool Clips</a>
-    
-    <a href="/user/upcomingmovies">Upcoming Roblox Movies</a>
-    
-    <a href="/user/account">Your Account</a>
-    
+    <a href="/preview.html">Preview of NothingButTyler+</a>
+
   </div>
- 
-<font color="white"><center>
-    <img id="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6jRFCljQ2Vu0MIfXO9HMopEcUbcOeDRWfCJa7NtESbQ&s=10" style="border-radius: 50px;" alt="Profile Picture" width="50" height="50" />
-    <p id="welcome-message">Loading Account...</p>
-    
-    <h1 id="welcomeMessage">Account Settings</h1>
 
-    <form id="updateNameForm">
-    <h2>Update Account Name</h2>
-    <input type="text" id="newNameInput" class="nbttextbox" placeholder="New Account Name" required>
-    <p id="nameStatus" style="color: yellow;"></p>
-</form>
-
-
-    <hr/>
-
-    <div id="accountManagement">
-        <h2>Account Actions</h2>
-        <button id="forgotPinButton" class="button-29">Send PIN Reset Link</button><br/>
-        
-        <button id="deleteAccountButton" class="button-29" style="background-color: red;">Delete Account</button>
-        <p id="actionStatus" style="color: yellow;"></p>
-    </div>
-  
-  <div id="unsavedChangesBanner" class="hidden-banner">
-    <div style="flex-grow: 1;">
-        You have unsaved changes!
-    </div>
-    <button id="saveChangesButton" class="button-29" style="margin-right: 10px;">Save Changes</button>
-    <button id="discardChangesButton" class="button-29">Discard</button> 
 </div>
 
-  <hr />
+<!--<div style="padding-left:20px">-->
 
-    <button class="sign-out-btn" id="signOutButton">Sign Out</button>
+    <div>
 
-  <hr />
+      <center>
+
+        <h1>Sign up for NothingButTyler+</h1>
+
+        <i>Already have an account? Log in <a href="/">here</a>.</i>
+
+    
+
+        <br/><br/>
+        
+            <form id="signupForm">
+        <label for="accountName">Account Name:</label>
+        <input type="text" id="accountName" required>
+              
+              <br />
+        
+        <label for="pin">Create a 4-digit PIN:</label>
+        <input type="password" id="pin" minlength="4" maxlength="4" required>
+              
+              <br />
+        
+        <button type="submit">Sign Up</button>
+        <p id="error-message" style="color: red;"></p>
+    </form>
+        
+
+        <br/>
+
+   
+        <p>Or...</p>
+
+        <!--<i>(Discord Sign in Button Coming Soon!)</i> Jan 16 2025, the Discord button was created-->
+<a href="https://discord.com/oauth2/authorize?client_id=1323326058329804830&response_type=code&redirect_uri=https%3A%2F%2Fnothingbuttylerplus.glitch.me%2Fuser%2Fdashboard.html&scope=identify"><button class="button-29" style="display: inline-block; margin-right: 10px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-discord" viewBox="0 0 16 16"> <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/> </svg> Sign in with Discord</button></a>
+
+<!--<a href="https://authlog.glitch.me/oauth2/authorize?client_id=1323326058329804830&response_type=code&redirect_uri=https%3A%2F%2Fnothingbuttylerplus.glitch.me%2Fuser%2Fdashboard.html&scope=identify"><button class="button-29" style="display: inline-block; margin-right: 10px;"> Sign in with Authlog</button></a>-->
+    </div>
+    
+    
+    <center><br />
+    
+    <i>(Note: The Google sign in button hasn't been working, so Google sign in is unavailable. <!--!--> More sign in options are coming soon<!--end of !-->.)</i>
+    
+    <hr />
+    
+    <h3>Learn More About NothingButTyler+</h3>
+    <p>NothingButTyler+ is a website subscripton by NothingButTyler where you can get access to upcoming videos/shorts/livestreams, progress on Roblox games, cool clips by NothingButTyler, progress on Roblox movies, and so much more! It's completely free, and no <u>paying</u> subscriptions are required at all. Enjoy NothingButTyler+ and have fun!</p>
+ 
+
+<a href="#"><button class="button-29">Log in</button></a>
+<a href="/signup"><button class="button-29">Sign up</button></a>
+    
+<hr />
           <footer>        <div style="background-color:transparent;text-align:center;padding:10px;margin-top:7px;font-size:12px;color: white;">Copyright &copy; 2025 by NothingButTyler. All rights reserved.</div>
       </footer></center></font>
-
-   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  </body>
+    
+    <script src="/btn/submitbutton-script.js"></script>
+    
+            <!--SCRIPTS-->
+        
+        
+        <!--GOOGLE FIREBASE ACCESS SCRIPTS-->
+        
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
 <script>
+    // 🚨 PASTE YOUR ACCURATE CONFIG HERE (Step 1)
     const firebaseConfig = {
-      apiKey: "AIzaSyCxg9yjBpv0lwhG1dBpqKpUJRrQEXCsavI",
-      authDomain: "nothingbuttylerplusv2.firebaseapp.com",
-      projectId: "nothingbuttylerplusv2",
-      storageBucket: "nothingbuttylerplusv2.firebasestorage.app",
-      messagingSenderId: "478539772644",
-      appId: "1:478539772644:web:aa99972afac494f9bd32f1",
-      measurementId: "G-TBRJNP38KP"
-    };
+    apiKey: "AIzaSyCxg9yjBpv0lwhG1dBpqKpUJRrQEXCsavI",
+    authDomain: "nothingbuttylerplusv2.firebaseapp.com",
+    projectId: "nothingbuttylerplusv2",
+    storageBucket: "nothingbuttylerplusv2.firebasestorage.app",
+    messagingSenderId: "478539772644",
+    appId: "1:478539772644:web:aa99972afac494f9bd32f1",
+    measurementId: "G-TBRJNP38KP"
+  };
+
     
+    // Initialize Firebase and get global references
     const app = firebase.initializeApp(firebaseConfig);
+    
+    // Use 'var' to make these available to your event listener code
     var auth = app.auth(); 
     var db = app.firestore();
-    let currentAccountName = ""; 
-
-    // GLOBAL BANNER FUNCTIONS & VARIABLES 
-    const banner = document.getElementById('unsavedChangesBanner');
-    const nameInput = document.getElementById('newNameInput');
-    let hasUnsavedChanges = false; 
-
-    function showBanner() {
-        if (!hasUnsavedChanges) {
-            banner.classList.remove('hidden-banner');
-            hasUnsavedChanges = true;
-        }
-    }
-
-    function hideBanner() {
-        if (hasUnsavedChanges) {
-            banner.classList.add('hidden-banner'); 
-            hasUnsavedChanges = false;
-        }
-    }
     
-    // -----------------------------------------------------------
-    // AUTHENTICATION & INITIAL DATA LOAD (THE ONLY STARTING POINT)
-    // -----------------------------------------------------------
-    auth.onAuthStateChanged(function(user) {
-        if (user) {
-            document.getElementById('dashboard').classList.remove('hidden');
-            
-            db.collection("users").doc(user.uid).get()
-                .then((doc) => {
-                    if (doc.exists) {
-                        currentAccountName = doc.data().accountName; 
-                        const profilePicURL = doc.data().profilePicURL;
+    // ------------------------------------------------------------------
+    // ⚠️ CRITICAL STEP: Copy and paste the ENTIRE contents of your
+    // 'js/signup.js' file into this script block right here, 
+    // after the db/auth definitions.
+    // ------------------------------------------------------------------
 
-                        document.getElementById('welcome-message').textContent = `Settings for ${currentAccountName}`;
-                        document.getElementById('profile-pic').src = profilePicURL;
-                        nameInput.value = currentAccountName;
-                    }
-                    
-                    // Attach listener after initial value is set
-                    nameInput.addEventListener('input', showBanner); 
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault(); 
 
-                    // -----------------------------------------------------------
-                    // 🚨 ALL EVENT LISTENERS ARE PLACED HERE 🚨
-                    // -----------------------------------------------------------
-                    
-                    // 1. MASTER SAVE CHANGES LOGIC
-                    document.getElementById('saveChangesButton').addEventListener('click', function() {
-                        const newAccountName = nameInput.value.trim();
-                        const nameStatus = document.getElementById('nameStatus');
-
-                        if (!user || !hasUnsavedChanges || newAccountName === currentAccountName) {
-                             nameStatus.textContent = "No changes to save.";
-                             return;
-                        }
-
-                        if (newAccountName === "") {
-                            nameStatus.textContent = "Account name cannot be empty.";
-                            return;
-                        }
-
-                        const newEmail = `${newAccountName.toLowerCase().replace(/\s/g, '')}@nothingbuttylerplus.com`;
-                        nameStatus.textContent = "Saving changes...";
-                        
-                        user.updateEmail(newEmail)
-                            .then(() => {
-                                return db.collection("users").doc(user.uid).update({
-                                    accountName: newAccountName
-                                });
-                            })
-                            .then(() => {
-                                nameStatus.textContent = `Success! Account Name changed to ${newAccountName}.`;
-                                currentAccountName = newAccountName; 
-                                document.getElementById('welcome-message').textContent = `Settings for ${currentAccountName}`;
-                                hideBanner(); 
-                            })
-                            .catch((error) => {
-                                if (error.code === 'auth/requires-recent-login') {
-                                     nameStatus.textContent = "Security Error: Please log out and log back in immediately before attempting to change your account name.";
-                                } else {
-                                     nameStatus.textContent = `Error: ${error.message}`;
-                                }
-                                console.error("Error updating account:", error);
-                            });
-                    });
-
-                    // 2. DISCARD BUTTON LOGIC (FIXES THE DISCARD BUTTON ISSUE)
-                    document.getElementById('discardChangesButton').addEventListener('click', function() {
-                        // Reset the input field to the original, current name
-                        nameInput.value = currentAccountName; 
-                        
-                        // Hide the banner and reset flag
-                        hideBanner();
-                        
-                        document.getElementById('nameStatus').textContent = '';
-                    });
-                    
-                    // 3. FORGOT PIN / PASSWORD RESET LOGIC
-                    document.getElementById('forgotPinButton').addEventListener('click', function() {
-                        const actionStatus = document.getElementById('actionStatus');
-                        if (!user) { actionStatus.textContent = "Error: Please log in again."; return; }
-                        auth.sendPasswordResetEmail(user.email)
-                            .then(() => {
-                                actionStatus.textContent = "Success! A PIN reset link has been sent to the email associated with your account.";
-                            })
-                            .catch((error) => {
-                                actionStatus.textContent = `Error sending reset email: ${error.message}`;
-                            });
-                    });
-                    
-                    // 4. DELETE ACCOUNT LOGIC
-                    document.getElementById('deleteAccountButton').addEventListener('click', function() {
-                        const actionStatus = document.getElementById('actionStatus');
-                        if (!user) { actionStatus.textContent = "Error: Please log in again."; return; }
-                        if (!confirm("WARNING: Are you sure you want to permanently delete your account? This cannot be undone.")) { return; }
-                        
-                        db.collection("users").doc(user.uid).delete()
-                            .then(() => {
-                                return user.delete();
-                            })
-                            .then(() => {
-                                alert("Account deleted successfully. Returning to login page.");
-                                window.location.href = "../index.html"; 
-                            })
-                            .catch((error) => {
-                                actionStatus.textContent = `Authentication Error: Please re-login and try deleting immediately. ${error.message}`;
-                            });
-                    });
-                    
-                    // 5. LOGOUT FUNCTIONALITY
-                    document.getElementById('signOutButton').addEventListener('click', function() {
-                        auth.signOut().then(() => {
-                            window.location.href = "../index.html";
-                        }).catch((error) => {
-                            console.error("Logout Error:", error);
-                        });
-                    });
-                    
-                }); // <-- END of the .then(doc) function
-
-        } else {
-            window.location.href = "../index.html"; 
+        const accountName = document.getElementById('accountName').value;
+        const pin = document.getElementById('pin').value;
+        const errorMessage = document.getElementById('error-message');
+        
+        if (pin.length < 6) {
+            errorMessage.textContent = "PIN must be at least 6 characters long.";
+            return;
         }
+
+        const email = `${accountName.toLowerCase().replace(/\s/g, '')}@nothingbuttylerplus.com`;
+
+        errorMessage.textContent = ''; 
+
+        // 1. Create User (Uses the global 'auth' variable)
+        auth.createUserWithEmailAndPassword(email, pin)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                
+                // 2. Store Account Name (Uses the global 'db' variable)
+                return db.collection("users").doc(user.uid).set({
+                    accountName: accountName,
+                    profilePicURL: "images/default-profile.png" 
+                });
+            })
+            .then(() => {
+                console.log("Sign-up complete. Redirecting...");
+                window.location.href = "dashboard.html";
+            })
+            .catch((error) => {
+                errorMessage.textContent = `Sign-up Failed: ${error.message}`;
+                console.error(error);
+            });
     });
 
 </script>
 
+    <script src="/js/signup.js"></script>
+        
+        
+        
+      <!-- END OF GOOGLE FIREBASE ACCESS SCRIPTS>
 
+        <!--sign in with google--><!--popup sign in-->
 
-  
-  <!-- SAVE & DISCARD CHANGES POPUP -->
-  <!--STYLING-->
-  
-  <style>
-  /* Styling for the Unsaved Changes Banner */
-#unsavedChangesBanner {
-    position: fixed; /* Keep it fixed at the bottom */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px 20px;
-    background-color: #36393f; /* Dark background */
-    color: white;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
-    display: flex; /* Use flexbox for alignment */
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1000; /* Ensure it stays above other content */
-    transition: transform 0.3s ease-in-out; /* Smooth transition */
-}
+ <!-- UNAVAILABLE DUE TO ERROR ON GLITCH.COM AND GITHUB.COM -->
+ <!--<div id="g_id_onload" style="display: inline-block; margin-right: 10px;"
 
-/* The state for when the banner should be hidden */
-.hidden-banner {
-    transform: translateY(100%); /* Slide it completely off the screen */
-}
+     data-client_id="531378190318-0blp8d27s3jk91t621gbijg5odlucekb.apps.googleusercontent.com"
 
-  </style>
-<!--END OF STYLING-->
-  <!--SCRIPT-->
-  <script>
-  
-  
-  </script>
-  <!--END OF SCRIPT-->
-  <!--END OF SAVE & DISCARD CHANGES POPUP-->
-  
-    <script src="/fp/fading-popup-script.js"></script>
-    <script src="/js/dashboard-script-test.js"></script>
-    <script src="/js/dashboard.js"></script>
+     data-context="sign"
+
+     data-ux_mode="popup"
+
+     data-login_uri="https://nothingbuttylerplus.glitch.me/user/dashboard.html"
+
+     data-itp_support="true">
+
+</div>
+
+<--end of popup sign in--><!--button sign in->
+
+<div class="g_id_signin" style="padding: 10px; background-color: transparent; width: 200px; text-align: center; cursor: pointer;"
+
+     data-type="standard"
+
+     data-shape="square"
+
+     data-theme="outline"
+
+     data-text="signin_with"
+
+     data-size="medium">
+
+</div>
+
+We're sorry about this. -->
+
+        
+<!--end of button sign in--><!--end of sign in with google--><!--end of <!-- 👇 scripts -->
+
+        <!--<script src="https://accounts.google.com/gsi/client"></script>
+
+    <script src="/googlelogin.js"></script>-->
+
     
-     </body>
+<!--end of sign in with google-->
+    
+    
+<!--end of 👆 scripts-->
 
 </html>
-
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <style>
-                
-/*
---------------------------------------------------------------------------------------------------
-THESE STYLES ARE COPYRIGHTED (c) 2025 BY NOTHINGBUTTYLER. DO NOT USE TO PUT THIS ON YOUR WEBSITE.
---------------------------------------------------------------------------------------------------
-*/
-
-/* START STYLE.CSS */
-
-
-
-/* MAIN STYLES FOR HOMEPAGE */
-
-
-
-body { 
-  margin: 0; 
-  font-family: Arial, Helvetica, sans-serif;
-  background: rgb(2,0,36);
-  background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(0,255,255,1) 100%);
-
-
-}
-
-.header { 
-
-  overflow: hidden; 
-
- /* background-color: #f1f1f1; */
-
-  padding: 20px 10px;
-
-}
-
-.header a { 
-
-  float: left; 
-
-  color: white; 
-
-  text-align: center; 
-
-  padding: 12px; 
-
-  text-decoration: none; 
-
-  font-size: 18px; 
-
-  line-height: 25px; 
-
-  border-radius: 4px;
-
-}
-
-.header a.logo {
-
-  font-size: 25px; 
-
-  font-weight: bold;
-
-}
-
-.header a:hover { 
-
-  background-color: #dddddd; 
-
-  color: white;
-
-}
-
-.header a.active { 
-
-  background-color: dodgerblue; 
-
-  color: white;
-
-}
-
-.header-right { 
-
-  float: right;
-
-}
-
-@media screen and (max-width: 500px) { 
-
-  .header a {
-
-    float: none;
-
-    display: block; 
-
-    text-align: left;
-
-  } 
-
-  .header-right { 
-
-    float: none; 
-
-  }}
-a {
-  text-decoration: ;
-  color: white;
-/* END OF MAIN STYLING FOR HOMEPAGE */
-  
-  
-/* LOGIN AREA  - INPUT PASSWORD STYLING */
-  
-  
- /* This is the number password styling for the code on the login page. (index.html)*/
-
-          input[type="password"] { 
-
-            width: 100px;
-
-            padding: 10px;
-
-            font-size: 16px; 
-
-            border: 1px solid #ccc;
-
-            border-radius: 4px;
-
-          }
-
-/* END OF LOGIN AREA - INPUT PASSWORD STYLING */
-  
-  
-  
-  
-
-  
-  /* TEXT INPUT STYLING */
-  
-           input {
-                    box-shadow: inset #abacaf 0 0 0 2px;
-                    border: 0;
-                    background: rgba(0, 0, 0, 0);
-                    appearance: none;
-                    width: 100%;
-                    position: relative;
-                    border-radius: 3px;
-                    padding: 9px 12px;
-                    line-height: 1.4;
-                    color: rgb(0, 0, 0);
-                    font-size: 16px;
-                    font-weight: 400;
-                    height: 40px;
-                    transition: all .2s ease;
-                    :hover{
-                        box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
-                    }
-                    :focus{
-                        background: #fff;
-                        outline: 0;
-                        box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
-                    }
-                
-  
-  /* END OF TEXT INPUT STYLING */
-  
-  
-  
-  /* DISCARD CHANGES TEST */
-#discardChangesButton {
-    /* Assuming you want it to look like a standard, un-highlighted button */
-    background-color: transparent !important; 
-    color: white !important; 
-    border: 1px solid white !important;
-}
-
-/* If you are using a standard blue/colored button-29 */
-/* You may just need to override whatever is blocking it */
-#discardChangesButton {
-    /* For testing: Just make it look like the Save button */
-    background-color: #5865f2 !important; 
-    color: white !important;
-}
-             
-             
-             
-/* BUTTON  29 */
-             
-  /*<!-- HTML !-->
-<button class="button-29" role="button">Button 29</button>
-*/
-             
-.button-29 {
-  align-items: center;
-  appearance: none;
-  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
-  border: 0;
-  border-radius: 6px;
-  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
-  height: 48px;
-  justify-content: center;
-  line-height: 1;
-  list-style: none;
-  overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
-  position: relative;
-  text-align: left;
-  text-decoration: none;
-  transition: box-shadow .15s,transform .15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  will-change: box-shadow,transform;
-  font-size: 18px;
-}
-
-.button-29:focus {
-  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-}
-
-.button-29:hover {
-  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-  transform: translateY(-2px);
-}
-
-.button-29:active {
-  box-shadow: #3c4fe0 0 3px 7px inset;
-  transform: translateY(2px);
-}
-             
-             
-             
-/* TEXT INPUT */
-              .nbttextbox  {
-                border: 3px solid #000;
-                border-radius: 5px;
-                height: 50px;
-                line-height: normal;
-                color: #282828;
-                display: block;
-                width: 100%;
-                box-sizing: border-box;
-                user-select: auto;
-                font-size: 16px;
-                padding: 0 6px;
-                padding-left: 12px;
-                :focus{
-                    border: 3px solid #5551ff;
-                }
-             
-             
-             
-             
-                             
-  /* END OF STYLE.CSS */
-             
-             
-             
-             </style>
