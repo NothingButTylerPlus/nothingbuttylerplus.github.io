@@ -8,24 +8,20 @@
 
     <title>Login | NothingButTyler+</title>
     
+    <!-- FONT AWESOME SCRIPT-->
+    <script src="https://kit.fontawesome.com/eeb01edac2.js" crossorigin="anonymous"></script>
+    <!--END OF FONT AWESOME SCRIPT-->
+    
     		<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/149272952" />
-
-<!--FONT AWESOME SCRIPT-->
-
-<script src="https://kit.fontawesome.com/eeb01edac2.js" crossorigin="anonymous"></script>
-
-<!--END OF FONT AWESOME SCRIPT-->
     
     <!--Button styles--> <link rel="stylesheet" href="/css/submitbutton-style.css" /><link rel="stylesheet" href="/css/main/style.css" /><link rel="stylesheet" href="/css/textbox.css" />
-
-<script src="https://kit.fontawesome.com/eeb01edac2.js" crossorigin="anonymous"></script>
 
 
   </head>
 
   <body><font color="white">
         <a href="/contact.html" style="text-decoration: none;">    <div style="background-color:red;text-align:center;padding:10px;margin-top:7px;font-size:12px;color: black;">Some things are still a work-in-progress. If something doesn't work, let NothingButTyler know and he will update it.</div></a>
-
+                                                                                                                <div style="background-color:#8C8000;text-align:center;padding:10px;margin-top:7px;font-size:12px;color:white;"><i class="fa-solid fa-triangle-exclamation" style="color: #ffff00;"></i> ALERT: When logging into your account, if you get this error message: <code>An error occurred during verification</code>, it means that Google Firebase's servers are currently down, and you cannot get into your account until Google fixes the problem. <a href="https://status.firebase.google.com/" target="_blank"><button class="button-29" role="button">Check Google Firebase Status</button></a></div>
 <div class="header"> 
 
   <a href="/" class="logo">NothingButTyler+</a>
@@ -59,8 +55,14 @@
         <br>
         <br>
 
-        <form id="loginForm"> 
-            
+        <div style="background-color:#8C8000;text-align:center;padding:10px;margin-top:7px;font-size:12px;color:white;"><i class="fa-solid fa-triangle-exclamation" style="color: #ffff00;"></i> ALERT: When logging into your account, if you get this error message: <code>An error occurred during verification</code>, it means that Google Firebase's servers are currently down, and you cannot get into your account until Google fixes the problem. <a href="https://status.firebase.google.com/" target="_blank"><button class="button-29">Check Google Firebase Status</button></a></div>
+                 <br />
+        
+               <form id="loginForm"> 
+                 
+                 
+             
+                 
             <label for="accountName">Account Name:</label>
             <input type="text" id="accountName" class="nbttextbox" required>
             <br />
@@ -176,274 +178,3 @@
 <script src="/btn/submitbutton-script.js"></script>
 
 </html>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <style>
-    
-/*
---------------------------------------------------------------------------------------------------
-THESE STYLES ARE COPYRIGHTED (c) 2025 BY NOTHINGBUTTYLER. DO NOT USE TO PUT THIS ON YOUR WEBSITE.
---------------------------------------------------------------------------------------------------
-*/
-
-/* START STYLE.CSS */
-
-
-
-/* MAIN STYLES FOR HOMEPAGE */
-
-
-
-body { 
-  margin: 0; 
-  font-family: Arial, Helvetica, sans-serif;
-  background: rgb(2,0,36);
-  background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(0,255,255,1) 100%);
-
-
-}
-
-.header { 
-
-  overflow: hidden; 
-
- /* background-color: #f1f1f1; */
-
-  padding: 20px 10px;
-
-}
-
-.header a { 
-
-  float: left; 
-
-  color: white; 
-
-  text-align: center; 
-
-  padding: 12px; 
-
-  text-decoration: none; 
-
-  font-size: 18px; 
-
-  line-height: 25px; 
-
-  border-radius: 4px;
-
-}
-
-.header a.logo {
-
-  font-size: 25px; 
-
-  font-weight: bold;
-
-}
-
-.header a:hover { 
-
-  background-color: #dddddd; 
-
-  color: white;
-
-}
-
-.header a.active { 
-
-  background-color: dodgerblue; 
-
-  color: white;
-
-}
-
-.header-right { 
-
-  float: right;
-
-}
-
-@media screen and (max-width: 500px) { 
-
-  .header a {
-
-    float: none;
-
-    display: block; 
-
-    text-align: left;
-
-  } 
-
-  .header-right { 
-
-    float: none; 
-
-  }}
-a {
-  text-decoration: ;
-  color: white;
-/* END OF MAIN STYLING FOR HOMEPAGE */
-  
-  
-/* LOGIN AREA  - INPUT PASSWORD STYLING */
-  
-  
- /* This is the number password styling for the code on the login page. (index.html)*/
-
-          input[type="password"] { 
-
-            width: 100px;
-
-            padding: 10px;
-
-            font-size: 16px; 
-
-            border: 1px solid #ccc;
-
-            border-radius: 4px;
-
-          }
-
-/* END OF LOGIN AREA - INPUT PASSWORD STYLING */
-  
-  
-  
-  
-
-  
-  /* TEXT INPUT STYLING */
-  
-           input {
-                    box-shadow: inset #abacaf 0 0 0 2px;
-                    border: 0;
-                    background: rgba(0, 0, 0, 0);
-                    appearance: none;
-                    width: 100%;
-                    position: relative;
-                    border-radius: 3px;
-                    padding: 9px 12px;
-                    line-height: 1.4;
-                    color: rgb(0, 0, 0);
-                    font-size: 16px;
-                    font-weight: 400;
-                    height: 40px;
-                    transition: all .2s ease;
-                    :hover{
-                        box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
-                    }
-                    :focus{
-                        background: #fff;
-                        outline: 0;
-                        box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
-                    }
-                
-  
-  /* END OF TEXT INPUT STYLING */
-  
-  
-  
-  /* DISCARD CHANGES TEST */
-#discardChangesButton {
-    /* Assuming you want it to look like a standard, un-highlighted button */
-    background-color: transparent !important; 
-    color: white !important; 
-    border: 1px solid white !important;
-}
-
-/* If you are using a standard blue/colored button-29 */
-/* You may just need to override whatever is blocking it */
-#discardChangesButton {
-    /* For testing: Just make it look like the Save button */
-    background-color: #5865f2 !important; 
-    color: white !important;
-}
-             
-             
-             
-/* BUTTON  29 */
-             
-  /*<!-- HTML !-->
-<button class="button-29" role="button">Button 29</button>
-*/
-             
-.button-29 {
-  align-items: center;
-  appearance: none;
-  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
-  border: 0;
-  border-radius: 6px;
-  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
-  height: 48px;
-  justify-content: center;
-  line-height: 1;
-  list-style: none;
-  overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
-  position: relative;
-  text-align: left;
-  text-decoration: none;
-  transition: box-shadow .15s,transform .15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  will-change: box-shadow,transform;
-  font-size: 18px;
-}
-
-.button-29:focus {
-  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-}
-
-.button-29:hover {
-  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-  transform: translateY(-2px);
-}
-
-.button-29:active {
-  box-shadow: #3c4fe0 0 3px 7px inset;
-  transform: translateY(2px);
-}
-             
-             
-             
-/* TEXT INPUT */
-              .nbttextbox  {
-                border: 3px solid #000;
-                border-radius: 5px;
-                height: 50px;
-                line-height: normal;
-                color: #282828;
-                display: block;
-                width: 100%;
-                box-sizing: border-box;
-                user-select: auto;
-                font-size: 16px;
-                padding: 0 6px;
-                padding-left: 12px;
-                :focus{
-                    border: 3px solid #5551ff;
-                }
-             
-             
-             
-             
-                             
-  /* END OF STYLE.CSS */
-             
-             </style>
