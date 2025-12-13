@@ -237,21 +237,36 @@
                 window.location.href = "settings.html";
             });
             
-            // Send PIN Reset Link Button
+                 // Send PIN Reset Link Button
             document.getElementById('forgotPinButton').addEventListener('click', function() {
                 const actionStatus = document.getElementById('actionStatus');
-                if (!user) { actionStatus.textContent = "Error: Please log in again."; return; }
-                actionStatus.textContent = "Sending PIN reset link...";
                 
-                auth.sendPasswordResetEmail(user.email)
+                // 1. Get the email address from the new input field
+                const resetEmail = document.getElementById('resetEmailInput').value.trim();
+                
+                if (!resetEmail) { 
+                    actionStatus.textContent = "Please enter an email address to send the reset link to."; 
+                    return; 
+                }
+                
+                // Clear any previous status message
+                actionStatus.textContent = "Sending PIN reset link to " + resetEmail + "...";
+                
+                // 2. Use the user-provided email to send the reset link
+                auth.sendPasswordResetEmail(resetEmail)
                     .then(() => {
-                        actionStatus.textContent = "Success! A PIN reset link has been sent to the email associated with your account.";
+                        actionStatus.textContent = `Success! A PIN reset link has been sent to: ${resetEmail}`;
+                        
+                        // Optional: Clear the input field after success
+                        document.getElementById('resetEmailInput').value = ''; 
                     })
                     .catch((error) => {
-                        actionStatus.textContent = `Error sending reset email: ${error.message}`;
+                        // Firebase will return an error if the email is not registered (e.g., if the user types the wrong email).
+                        actionStatus.textContent = `Error sending reset email. Please ensure the email is correct. (${error.message})`;
                         console.error("Error sending PIN reset:", error);
                     });
             });
+
 
             // Back to Dashboard Button
             document.getElementById('backToDashboardButton').addEventListener('click', function() {
