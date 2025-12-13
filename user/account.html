@@ -97,9 +97,131 @@
 
             <div id="accountManagement" style="max-width: 500px; margin: 0 auto; padding: 20px 0;">
                 <h2>Account Recovery</h2>
-                <button id="forgotPinButton" class="button-29" style="margin-right: 10px;">
+                              <button id="forgotPinButton" class="button-29" style="margin-right: 10px;">
                   <i class="fas fa-key"></i> Send PIN Reset Link
                 </button>
+
+              <!-- FORGOT PIN BUTTON RESET EMAIL POPUP -->
+                  <div id="pinResetModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModalBtn">&times;</span>
+            <h2>Confirm PIN Reset</h2>
+            <p>Please enter the personal email address associated with your account to receive the PIN reset link.</p>
+            <form id="pinResetForm">
+                <input type="email" id="modalResetEmail" placeholder="Your Email Address" class="nbttextbox" required style="width: 100%; margin-bottom: 15px;">
+                <button type="submit" class="button-29" style="width: 100%;">Send Reset Link</button>
+            </form>
+            <p id="modalStatusMessage" style="color: yellow; margin-top: 10px;"></p>
+        </div>
+    </div>
+              <!-- END OF FORGOT PIN BUTTON RESET EMAIL POPUP -->
+              <!--FPBREP STYLING-->
+    <style>
+
+/* --- Modal Styling --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #0d123d; /* Dark blue background to match your theme */
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #5468ff;
+    width: 80%; /* Could be adjusted */
+    max-width: 400px;
+    border-radius: 8px;
+    color: white;
+    text-align: left;
+}
+
+.close-btn {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+            </style>
+              <!--END OR FPBREP STYLING-->
+            <!--FPBREP SCRIPT-->
+              <script>
+              
+                          // -----------------------------------------------------------
+            // NEW MODAL CONTROL AND PIN RESET LOGIC
+            // -----------------------------------------------------------
+            
+            const modal = document.getElementById('pinResetModal');
+            const forgotPinButton = document.getElementById('forgotPinButton');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const pinResetForm = document.getElementById('pinResetForm');
+            const modalStatusMessage = document.getElementById('modalStatusMessage');
+
+            // 1. Open Modal when Forgot PIN button is clicked
+            forgotPinButton.onclick = function() {
+                modalStatusMessage.textContent = ''; // Clear status
+                document.getElementById('modalResetEmail').value = ''; // Clear previous email
+                modal.style.display = "block";
+            }
+
+            // 2. Close Modal when 'x' is clicked
+            closeModalBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // 3. Close Modal if user clicks outside of it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            
+            // 4. Handle form submission INSIDE the modal
+            pinResetForm.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                
+                const resetEmail = document.getElementById('modalResetEmail').value.trim();
+                
+                if (!resetEmail) { 
+                    modalStatusMessage.textContent = "Please enter your email."; 
+                    return; 
+                }
+                
+                modalStatusMessage.textContent = "Sending PIN reset link...";
+                
+                // Use the user-provided email to send the reset link
+                auth.sendPasswordResetEmail(resetEmail)
+                    .then(() => {
+                        modalStatusMessage.textContent = `Success! A PIN reset link has been sent to: ${resetEmail}`;
+                        // We will NOT automatically close the modal here so the user sees the success message.
+                    })
+                    .catch((error) => {
+                        // Display error message
+                        modalStatusMessage.textContent = `Error: Please verify the email is correct. (${error.message})`;
+                        console.error("Error sending PIN reset:", error);
+                    });
+            });
+
+            // ... continue with existing navigation listeners below this ...
+
+              </script>
+              <!--END OF FPBREP SCRIPT!-->
+              
                 <p id="actionStatus" style="color: yellow; margin-top: 10px;"></p>
             </div>
             
