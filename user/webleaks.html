@@ -1,3 +1,239 @@
-Loading...please wait...
+<!DOCTYPE html> 
+
+<html lang="en"> 
+
+  <head>
+
+    <meta charset="UTF-8"> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+    <title>Website Leaks | NothingButTyler+</title> 
+    
+    <!--NEW STYLE-->
+  <link rel="stylesheet" href="/css/main/style.css" />
+  <link rel="stylesheet" href="/css/main/dashboard.css" />
+
+    <!--<link rel="stylesheet" href="/css/dashboard-style-test.css" /> -->
+    <link rel="stylesheet" href="/css/fading-popup-style.css" />
+
+</head> 
+
+      <body><!-- style="font-family: Arial, Helvetica, sans-serif;background: url('https://w3schools.com/favicon.ico')">-->
+        
+        <div id="popup" class="popup">
+           <img src="https://tr.rbxcdn.com/180DAY-1c3cb7495f65bc2307e643ced5352513/420/420/Decal/Webp/noFilter" alt="X - Close button" title="Close" id="close-btn" height="30" width="30" style="float: right;" />
+           <h1>Login successful</h1>
+           <p>Logged in successfully!</p> 
+        </div>
+        
+        <div style="background-color:red;text-align:center;padding:10px;margin-top:7px;font-size:12px;">This dashboard is still a work-in-progress. If something doesn't work, let NothingButTyler know and he will update it.</div>
 
 
+              <div id="dashboard" class="hidden">
+                
+                
+<div class="header"> 
+
+  <a href="/user/dashboard" class="logo">NothingButTyler+</a>
+
+  <div class="header-right"> 
+
+    <a href="/user/dashboard">Dashboard</a>
+    
+    <a href="/user/leaks">Leaks</a>
+    
+    <a class="active" href="/user/webleaks">Website Leaks</a>
+
+    <a href="/user/upcoming">Upcoming Videos</a> 
+
+    <a href="/user/progress">Progress on Roblox Games</a>
+    
+    <a href="/user/coolclips">Cool Clips</a>
+    
+    <a href="/user/upcomingmovies">Upcoming Roblox Movies</a>
+    
+    <a href="/user/account">Your Account</a>
+    
+  </div>
+  <font color="white"><center>
+        <img id="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6jRFCljQ2Vu0MIfXO9HMopEcUbcOeDRWfCJa7NtESbQ&s=10" style="border-radius: 50px;" alt="Profile Picture" width="50" height="50" />
+    <p id="welcome-message">Loading Account...</p>
+    
+    
+      
+<div style="max-width: 800px; margin: 40px auto; color: white; padding: 0 20px;">
+    <h1>💻 Exclusive Website/Platform Leaks</h1>
+    <p style="color: #ccc;">Leaks focused on platform updates, website code, and security findings.</p>
+    
+    <div id="webleaksContainer" class="webleaks-feed">
+        <p id="loadingStatus">Fetching web-specific leaks...</p>
+    </div>
+</div>
+
+    
+
+    <!-- webleaks script-->
+    <script>
+    
+                // --- WEBLEAKS CONTENT LOADING ---
+            const webleaksContainer = document.getElementById('webleaksContainer');
+            const loadingStatus = document.getElementById('loadingStatus');
+
+            // 🚨 NOTE: When servers are green, we will change "leaks" to "webleaks"
+            db.collection("leaks").orderBy("timestamp", "desc").get()
+                .then((querySnapshot) => {
+                    loadingStatus.style.display = 'none'; // Hide "Loading..."
+                    
+                    if (querySnapshot.empty) {
+                        webleaksContainer.innerHTML = '<p style="color: #aaa;">No web leaks have been posted yet. Check back soon!</p>';
+                        return;
+                    }
+
+                    let webLeaksHTML = '';
+                    
+                    querySnapshot.forEach((doc) => {
+                        const leak = doc.data();
+                        const date = leak.timestamp ? leak.timestamp.toDate().toLocaleDateString() : 'N/A';
+                        
+                        // Using a distinct style (Green border and text)
+                        webLeaksHTML += `
+                            <div style="background-color: rgba(10, 20, 10, 0.4); border-left: 5px solid limegreen; padding: 20px; margin-bottom: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
+                                <h2 style="color: limegreen; margin-top: 0; font-size: 1.3em;">${leak.title || 'Untitled Web Leak'}</h2>
+                                <p style="font-size: 0.9em; color: #ccc;">Source: Platform Monitoring | Posted on: ${date}</p>
+                                
+                                ${leak.imageUrl ? `<img src="${leak.imageUrl}" style="max-width: 100%; height: auto; margin: 10px 0; border-radius: 4px; border: 1px solid #004d00;">` : ''}
+                                
+                                <p style="color: #e0e0e0;">${leak.description || 'No detailed description provided for this web leak.'}</p>
+                            </div>
+                        `;
+                    });
+
+                    webleaksContainer.innerHTML = webLeaksHTML;
+                })
+                .catch(error => {
+                    loadingStatus.textContent = "Error loading web leaks: " + error.message;
+                    console.error("Error loading web leaks:", error);
+                });
+            // --- END WEBLEAKS CONTENT LOADING ---
+
+    
+    </script>
+    <!-- end of webleaks script-->
+
+                 <div id="user-info"></div> 
+                <button class="sign-out-btn" id="signOutButton">Sign Out</button>
+
+    <script>
+        document.getElementById('signOutButton').addEventListener('click', function() {
+            // Simulate sign-out process (like clearing session data, etc.)
+            alert('You have been signed out. Now taking you back to the homepage.');
+            // Optionally, redirect to login page or home
+            window.location.href = "/";
+        });
+    </script>
+
+
+              </div> 
+
+                <!--<div style="background-color:#f1f1f1;text-align:center;padding:10px;margin-top:7px;font-size:12px;">Copyright &copy; 2025 by NothingButTyler. All rights reserved.</div>-->
+                
+                   <footer>    <hr />    <div style="background-color:transparent;text-align:center;padding:10px;margin-top:7px;font-size:12px;color: white;">Copyright &copy; 2025 by NothingButTyler. All rights reserved.</div>
+      </footer></center>
+
+               <script src="https://apis.google.com/js/platform.js" async defer></script> 
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+
+         <script src="/js/dashboard-script-test.js"></script>
+        
+        <script src="/fp/fading-popup-script.js"></script>
+
+  
+  <!--GOOGLE FIREBASE SCRIPT-->
+  
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script>
+    // 🚨 CRITICAL FIX: USING NEW WORKING KEYS (nothingbuttylerplusv2)
+    const firebaseConfig = {
+      apiKey: "AIzaSyCxg9yjBpv0lwhG1dBpqKpUJRrQEXCsavI",
+      authDomain: "nothingbuttylerplusv2.firebaseapp.com",
+      projectId: "nothingbuttylerplusv2",
+      storageBucket: "nothingbuttylerplusv2.firebasestorage.app",
+      messagingSenderId: "478539772644",
+      appId: "1:478539772644:web:aa99972afac494f9bd32f1",
+      measurementId: "G-TBRJNP38KP"
+    };
+    
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    var auth = app.auth(); 
+    var db = app.firestore(); 
+
+    // -----------------------------------------------------------
+    // 1. SECURITY & DATA LOADING CHECK
+    // -----------------------------------------------------------
+    auth.onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in. Get their account details.
+            
+            // Show the dashboard content now that we know they are logged in
+            document.getElementById('dashboard').classList.remove('hidden');
+
+            db.collection("users").doc(user.uid).get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        const accountName = doc.data().accountName;
+                        const profilePicURL = doc.data().profilePicURL;
+
+                        // Display welcome message and profile picture
+                        document.getElementById('welcome-message').textContent = `Welcome, ${accountName}!`;
+                        document.getElementById('profile-pic').src = profilePicURL;
+                        
+                        // Hide the "Loading Account..." message that was in the HTML
+                        // document.getElementById('user-info').style.display = 'none';
+
+                    } else {
+                        // This should not happen if signup worked correctly
+                        document.getElementById('welcome-message').textContent = "Welcome, (User Data Missing)";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching user data:", error);
+                });
+
+        } else {
+            // User is NOT signed in. Redirect to the login page immediately.
+            console.log("User is not logged in. Redirecting to index.html");
+            window.location.href = "/"; 
+        }
+    });
+
+    // -----------------------------------------------------------
+    // 2. LOGOUT FUNCTIONALITY (Correct Firebase Call)
+    // -----------------------------------------------------------
+    document.getElementById('signOutButton').addEventListener('click', function() {
+        auth.signOut()
+            .then(() => {
+                // Sign-out successful. Redirect to login page.
+                window.location.href = "/";
+            })
+            .catch((error) => {
+                console.error("Logout Error:", error);
+                alert("Logout failed. Check console for details.");
+            });
+    });
+
+</script>
+
+<script src="/fp/fading-popup-script.js"></script>
+<script src="/js/dashboard-script-test.js"></script>
+<script src="/js/dashboard.js"></script>
+  
+<!--END OF GOOGLE FIREBASE SCRIPT-->
+     </body>
+
+</html>
