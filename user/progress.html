@@ -1,0 +1,437 @@
+<!DOCTYPE html> 
+
+<html lang="en"> 
+
+  <head>
+
+    <meta charset="UTF-8"> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+    <title>Roblox Game Progress | NothingButTyler+</title> 
+    
+    <!--NEW STYLE-->
+  <link rel="stylesheet" href="/css/main/style.css" />
+  <link rel="stylesheet" href="/css/main/dashboard.css" />
+
+    <!--<link rel="stylesheet" href="/css/dashboard-style-test.css" /> -->
+    <link rel="stylesheet" href="/css/fading-popup-style.css" />
+
+</head> 
+
+      <body><!-- style="font-family: Arial, Helvetica, sans-serif;background: url('https://w3schools.com/favicon.ico')">-->
+        
+        <div id="popup" class="popup">
+           <img src="https://tr.rbxcdn.com/180DAY-1c3cb7495f65bc2307e643ced5352513/420/420/Decal/Webp/noFilter" alt="X - Close button" title="Close" id="close-btn" height="30" width="30" style="float: right;" />
+           <h1>Login successful</h1>
+           <p>Logged in successfully!</p> 
+        </div>
+        
+        <div style="background-color:red;text-align:center;padding:10px;margin-top:7px;font-size:12px;">This dashboard is still a work-in-progress. If something doesn't work, let NothingButTyler know and he will update it.</div>
+
+
+              <div id="dashboard" class="hidden">
+                
+                
+<div class="header"> 
+
+  <a href="/user/dashboard" class="logo">NothingButTyler+</a>
+
+  <div class="header-right"> 
+
+    <a class="active" href="/user/dashboard">Dashboard</a>
+    
+    <a href="/user/leaks">Leaks</a>
+    
+    <a href="/user/webleaks">Website Leaks</a>
+
+    <a href="/user/upcoming">Upcoming Videos</a> 
+
+    <a href="/user/progress">Progress on Roblox Games</a>
+    
+    <a href="/user/coolclips">Cool Clips</a>
+    
+    <a href="/user/upcomingmovies">Upcoming Roblox Movies</a>
+    
+    <a href="/user/account">Your Account</a>
+    
+  </div>
+  <font color="white"><center>
+        <img id="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6jRFCljQ2Vu0MIfXO9HMopEcUbcOeDRWfCJa7NtESbQ&s=10" style="border-radius: 50px;" alt="Profile Picture" width="50" height="50" />
+    <p id="welcome-message">Loading Account...</p>
+    
+    
+      
+<div style="max-width: 800px; margin: 40px auto; color: white; padding: 0 20px;">
+    <h1>🚧 Roblox Game Development Progress</h1>
+    <p style="color: #ccc;">Tracking the status of our unreleased projects.</p>
+    
+    <div id="progressContainer" class="progress-grid">
+        <p id="loadingStatus">Checking current development status...</p>
+        </div>
+</div>
+
+    
+
+                 <div id="user-info"></div> 
+                <button class="sign-out-btn" id="signOutButton">Sign Out</button>
+
+    <script>
+        document.getElementById('signOutButton').addEventListener('click', function() {
+            // Simulate sign-out process (like clearing session data, etc.)
+            alert('You have been signed out. Now taking you back to the homepage.');
+            // Optionally, redirect to login page or home
+            window.location.href = "/";
+        });
+    </script>
+
+
+              </div> 
+
+                <!--<div style="background-color:#f1f1f1;text-align:center;padding:10px;margin-top:7px;font-size:12px;">Copyright &copy; 2025 by NothingButTyler. All rights reserved.</div>-->
+                
+                   <footer>    <hr />    <div style="background-color:transparent;text-align:center;padding:10px;margin-top:7px;font-size:12px;color: white;">Copyright &copy; 2025 by NothingButTyler. All rights reserved.</div>
+      </footer></center>
+
+               <script src="https://apis.google.com/js/platform.js" async defer></script> 
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+
+         <script src="/js/dashboard-script-test.js"></script>
+        
+        <script src="/fp/fading-popup-script.js"></script>
+
+  
+  <!--GOOGLE FIREBASE SCRIPT-->
+  
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script>
+    // 🚨 CRITICAL FIX: USING NEW WORKING KEYS (nothingbuttylerplusv2)
+    const firebaseConfig = {
+      apiKey: "AIzaSyCxg9yjBpv0lwhG1dBpqKpUJRrQEXCsavI",
+      authDomain: "nothingbuttylerplusv2.firebaseapp.com",
+      projectId: "nothingbuttylerplusv2",
+      storageBucket: "nothingbuttylerplusv2.firebasestorage.app",
+      messagingSenderId: "478539772644",
+      appId: "1:478539772644:web:aa99972afac494f9bd32f1",
+      measurementId: "G-TBRJNP38KP"
+    };
+    
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    var auth = app.auth(); 
+    var db = app.firestore(); 
+
+    // -----------------------------------------------------------
+    // 1. SECURITY & DATA LOADING CHECK
+    // -----------------------------------------------------------
+    auth.onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in. Get their account details.
+            
+            // Show the dashboard content now that we know they are logged in
+            document.getElementById('dashboard').classList.remove('hidden');
+
+            db.collection("users").doc(user.uid).get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        const accountName = doc.data().accountName;
+                        const profilePicURL = doc.data().profilePicURL;
+
+                        // Display welcome message and profile picture
+                        document.getElementById('welcome-message').textContent = `Welcome, ${accountName}!`;
+                        document.getElementById('profile-pic').src = profilePicURL;
+                        
+                        // Hide the "Loading Account..." message that was in the HTML
+                        // document.getElementById('user-info').style.display = 'none';
+
+                    } else {
+                        // This should not happen if signup worked correctly
+                        document.getElementById('welcome-message').textContent = "Welcome, (User Data Missing)";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching user data:", error);
+                });
+
+        } else {
+            // User is NOT signed in. Redirect to the login page immediately.
+            console.log("User is not logged in. Redirecting to index.html");
+            window.location.href = "/"; 
+        }
+    });
+
+    // -----------------------------------------------------------
+    // 2. LOGOUT FUNCTIONALITY (Correct Firebase Call)
+    // -----------------------------------------------------------
+    document.getElementById('signOutButton').addEventListener('click', function() {
+        auth.signOut()
+            .then(() => {
+                // Sign-out successful. Redirect to login page.
+                window.location.href = "/";
+            })
+            .catch((error) => {
+                console.error("Logout Error:", error);
+                alert("Logout failed. Check console for details.");
+            });
+    });
+
+</script>
+
+<script src="/fp/fading-popup-script.js"></script>
+<script src="/js/dashboard-script-test.js"></script>
+<script src="/js/dashboard.js"></script>
+  
+<!--END OF GOOGLE FIREBASE SCRIPT-->
+     </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+
+/*
+--------------------------------------------------------------------------------------------------
+THESE STYLES ARE COPYRIGHTED (c) 2025 BY NOTHINGBUTTYLER. DO NOT USE TO PUT THIS ON YOUR WEBSITE.
+--------------------------------------------------------------------------------------------------
+*/
+
+/* START STYLE.CSS */
+
+
+
+/* MAIN STYLES FOR HOMEPAGE */
+
+
+
+body { 
+  margin: 0; 
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(2,0,36);
+  background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(0,255,255,1) 100%);
+
+
+}
+
+.header { 
+
+  overflow: hidden; 
+
+ /* background-color: #f1f1f1; */
+
+  padding: 20px 10px;
+
+}
+
+.header a { 
+
+  float: left; 
+
+  color: white; 
+
+  text-align: center; 
+
+  padding: 12px; 
+
+  text-decoration: none; 
+
+  font-size: 18px; 
+
+  line-height: 25px; 
+
+  border-radius: 4px;
+
+}
+
+.header a.logo {
+
+  font-size: 25px; 
+
+  font-weight: bold;
+
+}
+
+.header a:hover { 
+
+  background-color: #dddddd; 
+
+  color: white;
+
+}
+
+.header a.active { 
+
+  background-color: dodgerblue; 
+
+  color: white;
+
+}
+
+.header-right { 
+
+  float: right;
+
+}
+
+@media screen and (max-width: 500px) { 
+
+  .header a {
+
+    float: none;
+
+    display: block; 
+
+    text-align: left;
+
+  } 
+
+  .header-right { 
+
+    float: none; 
+
+  }}
+a {
+  text-decoration: ;
+  color: white;
+/* END OF MAIN STYLING FOR HOMEPAGE */
+  
+  
+/* LOGIN AREA  - INPUT PASSWORD STYLING */
+  
+  
+ /* This is the number password styling for the code on the login page. (index.html)*/
+
+          input[type="password"] { 
+
+            width: 100px;
+
+            padding: 10px;
+
+            font-size: 16px; 
+
+            border: 1px solid #ccc;
+
+            border-radius: 4px;
+
+          }
+
+/* END OF LOGIN AREA - INPUT PASSWORD STYLING */
+  
+  
+  
+  
+
+  
+  /* TEXT INPUT STYLING */
+  
+           input {
+                    box-shadow: inset #abacaf 0 0 0 2px;
+                    border: 0;
+                    background: rgba(0, 0, 0, 0);
+                    appearance: none;
+                    width: 100%;
+                    position: relative;
+                    border-radius: 3px;
+                    padding: 9px 12px;
+                    line-height: 1.4;
+                    color: rgb(0, 0, 0);
+                    font-size: 16px;
+                    font-weight: 400;
+                    height: 40px;
+                    transition: all .2s ease;
+                    :hover{
+                        box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
+                    }
+                    :focus{
+                        background: #fff;
+                        outline: 0;
+                        box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
+                    }
+                
+  
+  /* END OF TEXT INPUT STYLING */
+  
+  
+  
+  
+  
+  
+  /* END OF STYLE.CSS */
+             
+             </style>
+             
+             
+             
+             
+             
+             
+             <style>
+             
+             
+             body { 
+  font-family: Arial, sans-serif; 
+}
+.popup { 
+  position: fixed;
+  top: 80%; 
+  left: 90%; 
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: blue;/*#f9c2c2;*/
+  border: 1px solid #f00; 
+  border-radius: 5px;
+  opacity: 1;
+  transition: opacity 1s ease;
+  z-index: 1000; 
+} 
+.popup.hidden { 
+  opacity: 0;
+}
+             
+             
+             
+             </style>
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             <script>
+             
+             
+             document.addEventListener("DOMContentLoaded", function() {
+  const popup = document.getElementById('popup'); 
+  const closeButton = document.getElementById('close-btn');
+  // Function to hide the popup
+  function hidePopup() {
+    popup.classList.add('hidden');
+  } 
+  // Set timeout to hide the popup after 5 seconds 
+  setTimeout(hidePopup, 5000); 
+  // Close button event listener 
+  closeButton.addEventListener('click', hidePopup); 
+});
+             
+             
+             
+             
+             </script>
